@@ -19,4 +19,8 @@ class Table(val number: Int,
 
         return total
     }
+
+    override fun toString(): String {
+        return "Mesa ${this.number}"
+    }
 }

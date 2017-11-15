@@ -2,25 +2,32 @@ package com.gmb.restaurapp.activity
 
 import android.app.AlertDialog
 import android.content.Context
-import android.support.v7.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.ViewSwitcher
 import com.gmb.restaurapp.R
-import com.gmb.restaurapp.common.VIEW_BUTTON
+import com.gmb.restaurapp.common.VIEW_MAIN
+import com.gmb.restaurapp.fragment.TableDetailFragment
+import com.gmb.restaurapp.fragment.TableListFragment
 import com.gmb.restaurapp.model.Allergen
 import com.gmb.restaurapp.model.Dish
+import com.gmb.restaurapp.model.Table
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.coroutines.experimental.bg
 import org.json.JSONObject
+import java.io.File
+import java.io.InputStream
 import java.net.URL
 import java.util.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListener{
 
     companion object {
         var menu: List<Dish>? = null
+        private val EXTRA_TABLE = "EXTRA_TABLE"
     }
 
     lateinit var viewSwitcher: ViewSwitcher
@@ -32,14 +39,31 @@ class MainActivity : AppCompatActivity() {
         viewSwitcher = findViewById(R.id.view_switcher)
         viewSwitcher.setInAnimation(this, android.R.anim.fade_in)
         viewSwitcher.setInAnimation(this, android.R.anim.fade_out)
-        viewSwitcher.displayedChild = VIEW_BUTTON.LOADING.index
+        viewSwitcher.displayedChild = VIEW_MAIN.LOADING.index
 
         if (menu == null) {
             menu = updateMenu(this)
         } else {
-            viewSwitcher.displayedChild = VIEW_BUTTON.SHOW_TABLES.index
+
+            showTableList(this)
+
         }
 
+    }
+
+    private fun showTableList(context: Context) {
+
+        viewSwitcher.displayedChild = VIEW_MAIN.SHOW_TABLES.index
+
+        val currentFragment = fragmentManager
+                .findFragmentById(R.id.fragmentContainer)
+
+
+        if(currentFragment == null)
+            fragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragmentContainer, TableListFragment())
+                    .commit()
     }
 
     private fun updateMenu(context: Context): List<Dish>? {
@@ -55,7 +79,9 @@ class MainActivity : AppCompatActivity() {
             if (downloadedMenu != null){
                 // Tó ha ido bien, se lo asigno al atributo forecast
                 menu = downloadedMenu
-                viewSwitcher.displayedChild = VIEW_BUTTON.SHOW_TABLES.index
+
+                showTableList(context)
+
             } else {
                 // ha pasado algo
                 AlertDialog.Builder(context)
@@ -75,10 +101,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun downloadMenu(): List<Dish>? {
         try {
-            Thread.sleep(5000)
-            
-            val url = URL("http://www.mocky.io/v2/5a087acf3200000203137fe5");
-            val jsonString = Scanner(url.openStream(), "UTF-8").useDelimiter("\\A").next()
+            Thread.sleep(2000)
+
+           // val url = URL("https://www.mocky.io/v2/5a087acf3200000203137fe5");
+            //val jsonString = Scanner(url.openStream(), "UTF-8").useDelimiter("\\A").next()
+
+            val jsonString = getJsonFile()
+
 
             val jsonRoot = JSONObject(jsonString.toString())
             val dishesList = jsonRoot.getJSONArray("dishes")
@@ -116,6 +145,33 @@ class MainActivity : AppCompatActivity() {
         }
 
         return null
+
+    }
+
+    private fun getJsonFile(): String {
+
+        val file = this.baseContext.openFileInput("menu.json")
+
+
+        return file.bufferedReader().use { it.readText() }
+    }
+
+    override fun onTableSelected(table: Table?, position: Int) {
+
+    /*
+        if (fragmentManager.findFragmentById(R.id.table_detail_fragment) == null) {
+            val fragment = TableDetailFragment.newInstance(table)
+            fragmentManager.beginTransaction()
+                    .add(R.id.table_detail_fragment, fragment)
+                    .commit()
+        }
+        */
+
+
+        var intent = Intent(this, TableDetailActivity::class.java)
+        intent.putExtra(EXTRA_TABLE, table)
+
+        startActivity(intent)
 
     }
 }
