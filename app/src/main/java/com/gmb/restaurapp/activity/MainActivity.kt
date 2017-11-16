@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity
 import android.widget.ViewSwitcher
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.common.VIEW_MAIN
-import com.gmb.restaurapp.fragment.TableDetailFragment
 import com.gmb.restaurapp.fragment.TableListFragment
 import com.gmb.restaurapp.model.Allergen
 import com.gmb.restaurapp.model.Dish
@@ -18,8 +17,6 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.coroutines.experimental.bg
 import org.json.JSONObject
-import java.io.File
-import java.io.InputStream
 import java.net.URL
 import java.util.*
 
@@ -103,10 +100,10 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
         try {
             Thread.sleep(2000)
 
-           // val url = URL("https://www.mocky.io/v2/5a087acf3200000203137fe5");
-            //val jsonString = Scanner(url.openStream(), "UTF-8").useDelimiter("\\A").next()
+            val url = URL("http://www.mocky.io/v2/5a087acf3200000203137fe5");
+            val jsonString = Scanner(url.openStream(), "UTF-8").useDelimiter("\\A").next()
 
-            val jsonString = getJsonFile()
+           // val jsonString = getJsonFile()
 
 
             val jsonRoot = JSONObject(jsonString.toString())
