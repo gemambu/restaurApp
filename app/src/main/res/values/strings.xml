@@ -6,4 +6,5 @@
     <string name="detail_table_number">Mesa %d</string>
     <string name="calculate_bill_button">Calcular cuenta</string>
     <string name="dish_image_description">Imagen del plato</string>
+    <string name="show_dishes_list">Mostrar menu</string>
 </resources>
