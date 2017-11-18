@@ -4,12 +4,12 @@ import java.io.Serializable
 
 
 class Table(val number: Int,
-            var dishes: MutableList<DishOrdered>?) : Serializable {
+            var dishes: MutableList<Dish>?) : Serializable {
 
     val count
         get() = dishes?.size ?: 0
 
-    fun addDish(dish: DishOrdered) {
+    fun addDish(dish: Dish) {
         if (dishes == null ) {
             dishes = mutableListOf()
         }

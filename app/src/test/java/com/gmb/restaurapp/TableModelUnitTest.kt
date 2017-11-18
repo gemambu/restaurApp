@@ -1,6 +1,6 @@
 package com.gmb.restaurapp
 
-import com.gmb.restaurapp.model.DishOrdered
+import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Table
 import org.junit.Test
 
@@ -15,7 +15,7 @@ class TableModelUnitTest {
 
     @Before
     fun setup() {
-        val dish = DishOrdered(1,
+        val dish = Dish(1,
                 "plato1",
                 "desc plato 1",
                 22.3f,
@@ -23,7 +23,7 @@ class TableModelUnitTest {
                 null,
                 "variante cliente 1")
 
-        val dish2 = DishOrdered(2,
+        val dish2 = Dish(2,
                 "plato2",
                 "desc plato 2",
                 30.0f,
@@ -31,7 +31,7 @@ class TableModelUnitTest {
                 null,
                 null)
 
-        val dishes: List<DishOrdered> = listOf(dish, dish2)
+        val dishes: List<Dish> = listOf(dish, dish2)
         table = Table(1, dishes)
 
         emptyTable = Table(2, null)

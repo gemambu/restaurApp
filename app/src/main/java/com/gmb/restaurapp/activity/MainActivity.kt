@@ -64,7 +64,6 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
     }
 
     private fun updateMenu(context: Context): List<Dish>? {
-        var menu: List<Dish>? = null
 
         async(UI){
 
@@ -133,7 +132,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
                     }
                 }
 
-                menuList.add(Dish(id, name, description, price, photo, allergenList))
+                menuList.add(Dish(id, name, description, price, photo, allergenList, null))
             }
 
             return menuList
@@ -145,13 +144,6 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
 
     }
 
-    private fun getJsonFile(): String {
-
-        val file = this.baseContext.openFileInput("menu.json")
-
-
-        return file.bufferedReader().use { it.readText() }
-    }
 
     override fun onTableSelected(table: Table?, position: Int) {
 

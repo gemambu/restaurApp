@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.gmb.restaurapp.R
-import com.gmb.restaurapp.model.DishOrdered
+import com.gmb.restaurapp.model.Dish
 
 
-class DishRecyclerViewAdapter(val dish: List<DishOrdered>?) : RecyclerView.Adapter<DishRecyclerViewAdapter.DishViewHolder>() {
+class DishRecyclerViewAdapter(val dishList: List<Dish>?) : RecyclerView.Adapter<DishRecyclerViewAdapter.DishViewHolder>() {
     var onClickListener: View.OnClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): DishViewHolder {
@@ -20,12 +20,12 @@ class DishRecyclerViewAdapter(val dish: List<DishOrdered>?) : RecyclerView.Adapt
     }
 
     override fun onBindViewHolder(holder: DishViewHolder?, position: Int) {
-        if (dish != null) {
-            holder?.bindDish(dish[position], position)
+        if (dishList != null) {
+            holder?.bindDish(dishList[position], position)
         }
     }
 
-    override fun getItemCount() = dish?.size ?: 0
+    override fun getItemCount() = dishList?.size ?: 0
 
     inner class DishViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -38,7 +38,7 @@ class DishRecyclerViewAdapter(val dish: List<DishOrdered>?) : RecyclerView.Adapt
         val allergen4 = itemView.findViewById<TextView>(R.id.allergen4)
         val dishDescription = itemView.findViewById<TextView>(R.id.dish_description)
 
-        fun bindDish(dish: DishOrdered, position: Int) {
+        fun bindDish(dish: Dish, position: Int) {
             // accedemos al contexto
             val context = itemView.context
 
