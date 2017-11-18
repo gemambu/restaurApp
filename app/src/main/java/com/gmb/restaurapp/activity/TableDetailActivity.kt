@@ -47,7 +47,7 @@ class TableDetailActivity : AppCompatActivity() {
                 .findFragmentById(R.id.fragmentDishList)
 
         if (currentFragment == null){
-            val fragment = DishListFragment.newInstance(table?.dishes)
+            val fragment = DishListFragment.newInstance(table?.dishes, table)
             fragmentManager
                     .beginTransaction()
                     .add(R.id.fragmentDishList, fragment)
@@ -60,6 +60,7 @@ class TableDetailActivity : AppCompatActivity() {
         var intent = Intent(this, DishListActivity::class.java)
         var bundle = Bundle()
         bundle.putSerializable("ARG_DISH_LIST", MainActivity?.menu?.toTypedArray())
+        bundle.putSerializable("ARG_TABLE", table)
         intent.putExtras(bundle)
         startActivity(intent)
     }

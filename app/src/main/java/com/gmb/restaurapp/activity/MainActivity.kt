@@ -102,8 +102,6 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
             val url = URL("http://www.mocky.io/v2/5a087acf3200000203137fe5");
             val jsonString = Scanner(url.openStream(), "UTF-8").useDelimiter("\\A").next()
 
-           // val jsonString = getJsonFile()
-
 
             val jsonRoot = JSONObject(jsonString.toString())
             val dishesList = jsonRoot.getJSONArray("dishes")
@@ -144,23 +142,9 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
 
     }
 
-
     override fun onTableSelected(table: Table?, position: Int) {
-
-    /*
-        if (fragmentManager.findFragmentById(R.id.table_detail_fragment) == null) {
-            val fragment = TableDetailFragment.newInstance(table)
-            fragmentManager.beginTransaction()
-                    .add(R.id.table_detail_fragment, fragment)
-                    .commit()
-        }
-        */
-
-
         var intent = Intent(this, TableDetailActivity::class.java)
         intent.putExtra(EXTRA_TABLE, table)
-
         startActivity(intent)
-
     }
 }

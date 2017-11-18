@@ -7,4 +7,6 @@
     <string name="calculate_bill_button">Calcular cuenta</string>
     <string name="dish_image_description">Imagen del plato</string>
     <string name="show_dishes_list">Mostrar menu</string>
+    <string name="add_dish_btn">Añadir plato</string>
+    <string name="cancel_add_btn">Cancelar</string>
 </resources>

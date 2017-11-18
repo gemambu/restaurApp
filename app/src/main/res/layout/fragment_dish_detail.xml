@@ -59,6 +59,33 @@
         app:layout_constraintStart_toEndOf="@+id/dish_detail_photo"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/allergen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            tools:text="Allergen 1" />
+
+        <TextView
+            android:id="@+id/allergen2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            tools:text="Allergen 2" />
+
+        <TextView
+            android:id="@+id/allergen3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            tools:text="Allergen 3" />
+
+        <TextView
+            android:id="@+id/allergen4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            tools:text="Allergen 4" />
     </LinearLayout>
 
     <TextView
@@ -93,7 +120,7 @@
             android:id="@+id/add_dish_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="@string/add_dish_btn"
             tools:layout_editor_absoluteX="35dp"
             tools:layout_editor_absoluteY="447dp"
             tools:text="Agregar" />
@@ -102,7 +129,7 @@
             android:id="@+id/cancel_dish_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="@string/cancel_add_btn"
             tools:layout_editor_absoluteX="239dp"
             tools:layout_editor_absoluteY="446dp"
             tools:text="Cancel" />
