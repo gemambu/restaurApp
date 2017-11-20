@@ -1,7 +1,5 @@
 package com.gmb.restaurapp.adapter
 
-import android.app.AlertDialog
-import android.content.Intent
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -9,21 +7,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.gmb.restaurapp.R
-import com.gmb.restaurapp.activity.DishDetailActivity
-import com.gmb.restaurapp.activity.DishDetailActivity.Companion.EXTRA_DISH_DETAIL
-import com.gmb.restaurapp.activity.DishDetailActivity.Companion.EXTRA_TABLE_DETAIL
 import com.gmb.restaurapp.activity.TableDetailActivity
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Table
 
 
-class DishRecyclerViewAdapter(val dishList: List<Dish>?, val table: Table) : RecyclerView.Adapter<DishRecyclerViewAdapter.DishViewHolder>() {
+class DishRecyclerViewAdapter(val dishList: List<Dish>?, val table: Table, val listener: TableDetailActivity?) : RecyclerView.Adapter<DishRecyclerViewAdapter.DishViewHolder>() {
 
-    var onClickListener: View.OnClickListener? = null
+    private var onDishClickListener: OnDishClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): DishViewHolder {
         val view = LayoutInflater.from(parent?.context).inflate(R.layout.content_dish, parent, false)
-        view.setOnClickListener(onClickListener)
+        onDishClickListener = listener
         return DishViewHolder(view)
     }
 
@@ -56,18 +51,15 @@ class DishRecyclerViewAdapter(val dishList: List<Dish>?, val table: Table) : Rec
             dishImage.setImageResource(R.drawable.dim_sum)
 
             allergen.text = "gluten"
-
             itemView.setOnClickListener {
-                var intent = Intent(context, DishDetailActivity::class.java)
-                intent.putExtra(EXTRA_DISH_DETAIL, dish)
-                intent.putExtra(EXTRA_TABLE_DETAIL, table)
-
-                val root = itemView.context
-                root.startActivity(intent)
-
+                onDishClickListener?.onDishClicked(position, dish, table, itemView);
             }
+
         }
 
+    }
 
+    interface OnDishClickListener {
+        fun onDishClicked(position: Int, dish: Dish, table: Table, view: View)
     }
 }

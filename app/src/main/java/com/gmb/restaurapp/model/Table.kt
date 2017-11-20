@@ -10,7 +10,7 @@ class Table(val number: Int,
         get() = dishes?.size ?: 0
 
     fun addDish(dish: Dish) {
-        if (dishes == null ) {
+        if (dishes == null || count < 1 ) {
             dishes = mutableListOf()
         }
         dishes?.add(dish)

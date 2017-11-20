@@ -20,7 +20,7 @@
         tools:text="Mesa 1" />
 
     <FrameLayout
-        android:id="@+id/fragmentDishList"
+        android:id="@+id/dish_list_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="32dp"

@@ -18,13 +18,7 @@ import com.gmb.restaurapp.R
 class TableListFragment : Fragment() {
 
     companion object {
-
         private val EXTRA_TABLE = "EXTRA_TABLE"
-
-        fun newInstance(): TableListFragment {
-            val fragment = TableListFragment()
-            return fragment
-        }
     }
 
     lateinit var root: View

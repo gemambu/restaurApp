@@ -8,10 +8,15 @@ open class Dish(val id: Int,
                 val description: String,
                 val price: Float,
                 val photo: Int,
-                val allergens: List<Allergen>?, val variant: String?
+                val allergens: List<Allergen>?,
+                var variant: String?
 ) : Serializable {
 
     fun getAllergens() = allergens?.size ?: 0
+
+    fun updateVariant(newVariant: String){
+        this.variant = newVariant
+    }
 
 
 }
