@@ -1,31 +1,28 @@
 package com.gmb.restaurapp.fragment
 
-import android.app.Activity
 import android.app.Fragment
-import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.gmb.restaurapp.R
-import com.gmb.restaurapp.activity.TableDetailActivity
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Table
+import com.gmb.restaurapp.model.Tables
 
 
 class DishDetailFragment : Fragment() {
 
     companion object {
         val ARG_DISH_LIST = "ARG_DISH_LIST"
-        val EXTRA_TABLE = "EXTRA_TABLE"
+        val EXTRA_TABLE_POSITION = "EXTRA_TABLE_POSITION"
 
-        fun newInstance(dish: Dish, table: Table): DishDetailFragment {
+        fun newInstance(dish: Dish, tableNumber: Int): DishDetailFragment {
             val arguments = Bundle()
 
             arguments.putSerializable(ARG_DISH_LIST, dish as Dish)
-            arguments.putSerializable(EXTRA_TABLE, table as Table)
+            arguments.putInt(EXTRA_TABLE_POSITION, tableNumber)
 
             val fragment = DishDetailFragment()
             fragment.arguments = arguments
@@ -42,7 +39,7 @@ class DishDetailFragment : Fragment() {
             root = inflater?.inflate(R.layout.fragment_dish_detail, container, false)
 
 
-            table = arguments.getSerializable(EXTRA_TABLE) as Table
+            table = Tables.get(arguments.getInt(EXTRA_TABLE_POSITION))
             dish = arguments.getSerializable(ARG_DISH_LIST) as Dish
 
             val imageView = root.findViewById<ImageView>(R.id.dish_detail_photo)
@@ -79,8 +76,9 @@ class DishDetailFragment : Fragment() {
 
     private fun addDish() {
 
-        dish.updateVariant(variant.text.toString() ?: "")
-        table.addDish(dish)
+        var dishVariant = dish.copy()
+        dishVariant.updateVariant(variant.text.toString() ?: "")
+        table.addDish(dishVariant)
 
         Toast.makeText(root.context, "Añadiendo plato en la mesa: ${table.number}", Toast.LENGTH_LONG)
                 .show()

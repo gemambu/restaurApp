@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
 
     companion object {
         var menu: List<Dish>? = null
-        private val EXTRA_TABLE = "EXTRA_TABLE"
+        val TABLE_NUMBER = "TABLE_NUMBER"
     }
 
     lateinit var viewSwitcher: ViewSwitcher
@@ -142,9 +142,9 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
 
     }
 
-    override fun onTableSelected(table: Table?, position: Int) {
+    override fun onTableSelected(position: Int) {
         var intent = Intent(this, TableDetailActivity::class.java)
-        intent.putExtra(EXTRA_TABLE, table)
+        intent.putExtra(TABLE_NUMBER, position)
         startActivity(intent)
     }
 }

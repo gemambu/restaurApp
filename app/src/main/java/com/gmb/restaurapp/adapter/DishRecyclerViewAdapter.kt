@@ -12,7 +12,7 @@ import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Table
 
 
-class DishRecyclerViewAdapter(val dishList: List<Dish>?, val table: Table, val listener: TableDetailActivity?) : RecyclerView.Adapter<DishRecyclerViewAdapter.DishViewHolder>() {
+class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, val listener: TableDetailActivity?) : RecyclerView.Adapter<DishRecyclerViewAdapter.DishViewHolder>() {
 
     private var onDishClickListener: OnDishClickListener? = null
 
@@ -52,7 +52,7 @@ class DishRecyclerViewAdapter(val dishList: List<Dish>?, val table: Table, val l
 
             allergen.text = "gluten"
             itemView.setOnClickListener {
-                onDishClickListener?.onDishClicked(position, dish, table, itemView);
+                onDishClickListener?.onDishClicked(position, dish, tableNumber, itemView);
             }
 
         }
@@ -60,6 +60,6 @@ class DishRecyclerViewAdapter(val dishList: List<Dish>?, val table: Table, val l
     }
 
     interface OnDishClickListener {
-        fun onDishClicked(position: Int, dish: Dish, table: Table, view: View)
+        fun onDishClicked(position: Int, dish: Dish, tableNumber: Int, view: View)
     }
 }

@@ -18,7 +18,7 @@ import com.gmb.restaurapp.R
 class TableListFragment : Fragment() {
 
     companion object {
-        private val EXTRA_TABLE = "EXTRA_TABLE"
+        private val TABLE_NUMBER = "TABLE_NUMBER"
     }
 
     lateinit var root: View
@@ -44,7 +44,7 @@ class TableListFragment : Fragment() {
             //nos enteramos de que se ha pulsado un elemento de la lista
             list.setOnItemClickListener{ parent, view, position, id ->
                 // notifico al listener
-                onTableSelectedListener?.onTableSelected(Tables.get(position), position)
+                onTableSelectedListener?.onTableSelected(position)
             }
         }
 
@@ -77,6 +77,6 @@ class TableListFragment : Fragment() {
     }
 
     interface OnTableSelectedListener {
-        fun onTableSelected(table: Table?, position: Int)
+        fun onTableSelected(position: Int)
     }
 }

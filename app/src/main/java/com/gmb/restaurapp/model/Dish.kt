@@ -18,5 +18,8 @@ open class Dish(val id: Int,
         this.variant = newVariant
     }
 
+    fun copy() = Dish(id, name, description, price, photo, allergens, variant)
+
+
 
 }
