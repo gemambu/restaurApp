@@ -36,11 +36,7 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
         context = baseContext
 
         // findViewById<View>(R.id.calculate_bill_btn).setOnClickListener { showBill() }
-        show_menu_btn.setOnClickListener {
-             startActivity(DishListActivity.intent(context,
-                MainActivity?.menu as MutableList<Dish>,
-                tablePosition))
-}
+        show_menu_btn.setOnClickListener { v-> showMenu() }
 
         val intent = intent
 
@@ -61,6 +57,13 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
                 .commit()
     }
 
+    private fun showMenu() {
+
+        startActivity(DishListActivity.intent(context,
+                MainActivity?.menu as MutableList<Dish>,
+                tablePosition))
+
+    }
 
     private fun showBill() {
 
