@@ -1,5 +1,6 @@
 package com.gmb.restaurapp.adapter
 
+import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -7,12 +8,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.gmb.restaurapp.R
-import com.gmb.restaurapp.activity.TableDetailActivity
+import com.gmb.restaurapp.common.getAllergenInfo
 import com.gmb.restaurapp.model.Dish
-import com.gmb.restaurapp.model.Table
 
 
-class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, val listener: TableDetailActivity?) : RecyclerView.Adapter<DishRecyclerViewAdapter.DishViewHolder>() {
+class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, val listener: OnDishClickListener?) : RecyclerView.Adapter<DishRecyclerViewAdapter.DishViewHolder>() {
 
     private var onDishClickListener: OnDishClickListener? = null
 
@@ -41,21 +41,33 @@ class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, v
         val allergen3 = itemView.findViewById<TextView>(R.id.allergen3)
         val allergen4 = itemView.findViewById<TextView>(R.id.allergen4)
 
+        val allergens = mutableListOf<TextView>(
+                allergen,
+                allergen2,
+                allergen3,
+                allergen4
+        )
+
+
+
         fun bindDish(dish: Dish, position: Int) {
             // accedemos al contexto
             val context = itemView.context
 
             // actualizamos la vista (itemView, que es la tarjeta) con el modelo
             dishName.text = dish.name
-            dishPrice.text = dish.price.toString()
+            dishPrice.text = itemView.context.getString(R.string.dish_price, dish?.price ?: 0f)
             dishImage.setImageResource(R.drawable.dim_sum)
 
-            allergen.text = "gluten"
+            getAllergenInfo(dish, allergens)
+
+
             itemView.setOnClickListener {
                 onDishClickListener?.onDishClicked(position, dish, tableNumber, itemView);
             }
 
         }
+
 
     }
 

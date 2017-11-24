@@ -25,11 +25,11 @@
             android:id="@+id/dish_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="50dp"
             android:layout_alignBottom="@+id/dish"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:minWidth="50dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
             tools:text="12.50 €" />
 
 

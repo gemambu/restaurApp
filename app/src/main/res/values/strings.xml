@@ -9,4 +9,7 @@
     <string name="show_dishes_list">Mostrar menu</string>
     <string name="add_dish_btn">Añadir plato</string>
     <string name="cancel_add_btn">Cancelar</string>
+    <string name="dish_photo">Foto del plato</string>
+    <string name="dish_price">%.2f Euros</string>
+    <string name="dish_description">Descripción del plato</string>
 </resources>

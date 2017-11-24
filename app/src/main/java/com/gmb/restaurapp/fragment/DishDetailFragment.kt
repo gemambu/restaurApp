@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.gmb.restaurapp.R
+import com.gmb.restaurapp.common.getAllergenInfo
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Table
 import com.gmb.restaurapp.model.Tables
@@ -29,6 +30,7 @@ class DishDetailFragment : Fragment() {
             return fragment
         }
     }
+
     lateinit var dish: Dish
     lateinit var table: Table
     lateinit var root: View
@@ -46,22 +48,28 @@ class DishDetailFragment : Fragment() {
             val description = root.findViewById<TextView>(R.id.dish_description)
             variant = root.findViewById<EditText>(R.id.dish_variant)
             val price = root.findViewById<TextView>(R.id.dish_price)
-            val allergen = root.findViewById<TextView>(R.id.allergen)
 
-            //TO-DO manage the allergen list to display with the correct info
+            val allergen = root.findViewById<TextView>(R.id.allergen)
             val allergen2 = root.findViewById<TextView>(R.id.allergen2)
             val allergen3 = root.findViewById<TextView>(R.id.allergen3)
             val allergen4 = root.findViewById<TextView>(R.id.allergen4)
+
+            val allergens = mutableListOf<TextView>(
+                    allergen,
+                    allergen2,
+                    allergen3,
+                    allergen4
+            )
 
             root.findViewById<Button>(R.id.add_dish_btn).setOnClickListener { addDish() }
             root.findViewById<Button>(R.id.cancel_dish_btn).setOnClickListener { cancelAdd() }
 
 
             imageView.setImageResource(R.drawable.dim_sum)
-            allergen.text = "gluten"
             description.text = dish?.description ?: ""
             variant.setText(dish?.variant ?: "")
-            price.text = dish?.price.toString() ?: "0.0"
+            price.text = getString(R.string.dish_price, dish?.price ?: 0f)
+            getAllergenInfo(dish, allergens)
         }
 
         return root

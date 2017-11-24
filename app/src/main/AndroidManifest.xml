@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.TableDetailActivity"/>
-        <activity android:name=".fragment.DishDetailFragment"/>
+        <activity android:name=".activity.DishListActivity"/>
     </application>
 
 </manifest>

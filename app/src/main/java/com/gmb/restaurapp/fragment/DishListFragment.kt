@@ -1,5 +1,6 @@
 package com.gmb.restaurapp.fragment
 
+import android.app.Activity
 import android.app.Fragment
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
@@ -9,7 +10,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.gmb.restaurapp.R
-import com.gmb.restaurapp.activity.TableDetailActivity
 import com.gmb.restaurapp.adapter.DishRecyclerViewAdapter
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Table
@@ -30,15 +30,16 @@ class DishListFragment : Fragment() {
         lateinit var root: View
         lateinit var table: Table
 
-        fun newInstance(dishList: MutableList<Dish>?, tableNumber: Int, listener: TableDetailActivity): DishListFragment {
+        fun newInstance(dishList: MutableList<Dish>?, tableNumber: Int, listener: DishRecyclerViewAdapter.OnDishClickListener): DishListFragment {
             val arguments = Bundle()
 
             arguments.putSerializable(ARG_DISH_LIST, dishList as? Serializable)
             arguments.putInt(EXTRA_TABLE_NUMBER, tableNumber)
-            arguments.putSerializable(EXTRA_LISTENER, listener)
+            arguments.putSerializable(EXTRA_LISTENER, listener as Serializable)
 
             val fragment = DishListFragment()
             fragment.arguments = arguments
+
             return fragment
         }
     }
@@ -52,7 +53,7 @@ class DishListFragment : Fragment() {
 
             listData = arguments.getSerializable(ARG_DISH_LIST) as? MutableList<Dish>
             table = Tables.get(arguments.getInt(EXTRA_TABLE_NUMBER))
-            val listener = arguments.getSerializable(EXTRA_LISTENER) as? TableDetailActivity
+            val listener = arguments.getSerializable(EXTRA_LISTENER) as? DishRecyclerViewAdapter.OnDishClickListener
 
             val dishListAdapter = DishRecyclerViewAdapter(listData, table.number, listener)
 
