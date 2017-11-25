@@ -2,20 +2,19 @@ package com.gmb.restaurapp.activity
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.gmb.restaurapp.R
-import com.gmb.restaurapp.activity.MainActivity.Companion.TABLE_NUMBER
+import com.gmb.restaurapp.activity.MainActivity.Companion.EXTRA_TABLE_NUMBER
 import com.gmb.restaurapp.adapter.DishRecyclerViewAdapter
+import com.gmb.restaurapp.common.FATHER_ACTIVITY
 import com.gmb.restaurapp.fragment.DishDetailFragment
 import com.gmb.restaurapp.fragment.DishListFragment
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Table
 import com.gmb.restaurapp.model.Tables
 import kotlinx.android.synthetic.main.activity_table_detail.*
-import java.io.Serializable
 
 
 class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishClickListener {
@@ -39,11 +38,13 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
         show_menu_btn.setOnClickListener { _ -> showMenu() }
 
         val intent = intent
+        tablePosition = intent.getIntExtra(EXTRA_TABLE_NUMBER, 1)
 
-        tablePosition = intent.getIntExtra(TABLE_NUMBER, 1)
         table = Tables.get(tablePosition)
+    }
 
-
+    override fun onResume() {
+        super.onResume()
         showDishes()
     }
 
@@ -58,7 +59,6 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
     }
 
     private fun showMenu() {
-
         startActivity(DishListActivity.intent(context,
                 MainActivity.menu as MutableList<Dish>,
                 tablePosition))
@@ -86,7 +86,6 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
     }
 
     override fun onDishClicked(position: Int, dish: Dish, tableNumber: Int, view: View) {
-
 
         val fragment = DishDetailFragment.newInstance(dish, tablePosition)
         fragmentManager.beginTransaction()

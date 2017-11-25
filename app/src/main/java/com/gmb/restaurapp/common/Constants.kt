@@ -7,6 +7,11 @@ enum class VIEW_MAIN(val index: Int){
     SHOW_TABLES(1)
 }
 
+enum class FATHER_ACTIVITY{
+    TABLE_DETAIL,
+    MENU
+}
+
 val ALLERGENS: Map<String, Int> = mapOf(
         "a_1" to R.drawable.a_1,
         "a_2" to R.drawable.a_2,

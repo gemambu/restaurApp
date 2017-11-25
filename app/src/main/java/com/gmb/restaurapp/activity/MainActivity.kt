@@ -11,7 +11,6 @@ import com.gmb.restaurapp.common.VIEW_MAIN
 import com.gmb.restaurapp.fragment.TableListFragment
 import com.gmb.restaurapp.model.Allergen
 import com.gmb.restaurapp.model.Dish
-import com.gmb.restaurapp.model.Table
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
 
     companion object {
         var menu: List<Dish>? = null
-        val TABLE_NUMBER = "TABLE_NUMBER"
+        val EXTRA_TABLE_NUMBER = "EXTRA_TABLE_NUMBER"
     }
 
     lateinit var viewSwitcher: ViewSwitcher
@@ -41,9 +40,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
         if (menu == null) {
             menu = updateMenu(this)
         } else {
-
             showTableList()
-
         }
 
     }
@@ -73,7 +70,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
 
             val downloadedMenu = newMenu.await()
             if (downloadedMenu != null){
-                // Tó ha ido bien, se lo asigno al atributo forecast
+                // Menú descargado correctamente
                 menu = downloadedMenu
 
                 showTableList()
@@ -81,8 +78,8 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
             } else {
                 // ha pasado algo
                 AlertDialog.Builder(context)
-                        .setTitle("Error")
-                        .setMessage("No se ha podido descargar la información")
+                        .setTitle(getString(R.string.error_downloading_menu))
+                        .setMessage(getString(R.string.error_menu_message))
                         .setPositiveButton(getString(R.string.retry_download),  { dialog, _ ->
                             dialog.dismiss()
                             updateMenu(context)
@@ -144,7 +141,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
 
     override fun onTableSelected(position: Int) {
         var intent = Intent(this, TableDetailActivity::class.java)
-        intent.putExtra(TABLE_NUMBER, position)
+        intent.putExtra(EXTRA_TABLE_NUMBER, position)
         startActivity(intent)
     }
 }

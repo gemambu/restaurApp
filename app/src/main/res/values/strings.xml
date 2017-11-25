@@ -12,4 +12,6 @@
     <string name="dish_photo">Foto del plato</string>
     <string name="dish_price">%.2f Euros</string>
     <string name="dish_description">Descripción del plato</string>
+    <string name="error_downloading_menu">Error</string>
+    <string name="error_menu_message">No se ha podido descargar el menú</string>
 </resources>

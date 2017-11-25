@@ -18,7 +18,7 @@ import com.gmb.restaurapp.R
 class TableListFragment : Fragment() {
 
     companion object {
-        private val TABLE_NUMBER = "TABLE_NUMBER"
+        private val TABLE_NUMBER = "EXTRA_TABLE_NUMBER"
     }
 
     lateinit var root: View

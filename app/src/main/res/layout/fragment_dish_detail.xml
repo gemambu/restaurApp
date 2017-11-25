@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:windowSoftInputMode="adjustResize|stateHidden">
+
 
     <ImageView
         android:id="@+id/dish_detail_photo"
@@ -66,13 +68,14 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:ems="10"
+        android:ems="8"
         android:inputType="textMultiLine"
         android:textAppearance="@android:style/TextAppearance.Material.Large"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dish_description"
-        tools:text="Variantes del plato" />
+        tools:text="Variantes del plato"
+        android:windowSoftInputMode="adjustPan" />
 
     <Button
         android:id="@+id/add_dish_btn"

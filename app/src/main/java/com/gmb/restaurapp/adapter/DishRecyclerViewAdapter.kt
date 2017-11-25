@@ -38,34 +38,23 @@ class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, v
         val dishPrice = itemView.findViewById<TextView>(R.id.dish_price)
         val dishImage = itemView.findViewById<ImageView>(R.id.dish_image)
 
-        val allergen = itemView.findViewById<TextView>(R.id.allergen)
-        val allergen2 = itemView.findViewById<TextView>(R.id.allergen2)
-        val allergen3 = itemView.findViewById<TextView>(R.id.allergen3)
-        val allergen4 = itemView.findViewById<TextView>(R.id.allergen4)
-
-        val ivAllergen = itemView.findViewById<ImageView>(R.id.iv_allergen)
-        val ivAllergen2 = itemView.findViewById<ImageView>(R.id.iv_allergen2)
-        val ivAllergen3 = itemView.findViewById<ImageView>(R.id.iv_allergen3)
-        val ivAllergen4 = itemView.findViewById<ImageView>(R.id.iv_allergen4)
 
         private val allergens = mutableListOf<TextView>(
-                allergen,
-                allergen2,
-                allergen3,
-                allergen4
+                itemView.findViewById<TextView>(R.id.allergen),
+                itemView.findViewById<TextView>(R.id.allergen2),
+                itemView.findViewById<TextView>(R.id.allergen3),
+                itemView.findViewById<TextView>(R.id.allergen4)
         )
 
         private val ivAllergens = mutableListOf<ImageView>(
-                ivAllergen,
-                ivAllergen2,
-                ivAllergen3,
-                ivAllergen4
+                itemView.findViewById<ImageView>(R.id.iv_allergen),
+                itemView.findViewById<ImageView>(R.id.iv_allergen2),
+                itemView.findViewById<ImageView>(R.id.iv_allergen3),
+                itemView.findViewById<ImageView>(R.id.iv_allergen4)
         )
 
 
         fun bindDish(dish: Dish, position: Int) {
-            // accedemos al contexto
-            //val context = itemView.context
 
             // actualizamos la vista (itemView, que es la tarjeta) con el modelo
             dishName.text = dish.name
@@ -73,7 +62,6 @@ class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, v
             dishImage.setImageResource(getDishPhoto(dish.photo))
 
             getAllergenInfo(dish, allergens, ivAllergens)
-
 
             itemView.setOnClickListener {
                 onDishClickListener?.onDishClicked(position, dish, tableNumber, itemView);
