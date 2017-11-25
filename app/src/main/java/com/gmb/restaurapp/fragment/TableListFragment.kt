@@ -30,23 +30,22 @@ class TableListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        if (inflater != null){
-            root = inflater?.inflate(R.layout.fragment_table_list, container, false)
-            val list = root.findViewById<ListView>(R.id.table_list_fragment)
+        root = inflater.inflate(R.layout.fragment_table_list, container, false)
+        val list = root.findViewById<ListView>(R.id.table_list_fragment)
 
-            // Quizá pueda meter como setup el número de mesas
-            Tables.initTables(10)
+        // Quizá pueda meter como setup el número de mesas
+        Tables.initTables(10)
 
 
-            val adapter = ArrayAdapter<Table>(activity, android.R.layout.simple_list_item_1, Tables.toArray())
-            list.adapter = adapter
+        val adapter = ArrayAdapter<Table>(activity, android.R.layout.simple_list_item_1, Tables.toArray())
+        list.adapter = adapter
 
-            //nos enteramos de que se ha pulsado un elemento de la lista
-            list.setOnItemClickListener{ parent, view, position, id ->
-                // notifico al listener
-                onTableSelectedListener?.onTableSelected(position)
-            }
+        //nos enteramos de que se ha pulsado un elemento de la lista
+        list.setOnItemClickListener{ _, _, position, _ ->
+            // notifico al listener
+            onTableSelectedListener?.onTableSelected(position)
         }
+
 
         return root
 

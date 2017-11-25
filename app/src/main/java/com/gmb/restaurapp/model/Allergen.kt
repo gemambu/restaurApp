@@ -5,4 +5,4 @@ import java.io.Serializable
 
 class Allergen(val id: Int,
                val name: String,
-               val icon: Int) : Serializable
+               val icon: String) : Serializable

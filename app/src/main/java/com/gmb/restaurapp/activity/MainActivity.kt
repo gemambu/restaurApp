@@ -42,13 +42,13 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
             menu = updateMenu(this)
         } else {
 
-            showTableList(this)
+            showTableList()
 
         }
 
     }
 
-    private fun showTableList(context: Context) {
+    private fun showTableList() {
 
         viewSwitcher.displayedChild = VIEW_MAIN.SHOW_TABLES.index
 
@@ -76,7 +76,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
                 // Tó ha ido bien, se lo asigno al atributo forecast
                 menu = downloadedMenu
 
-                showTableList(context)
+                showTableList()
 
             } else {
                 // ha pasado algo
@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
         try {
             Thread.sleep(2000)
 
-            val url = URL("http://www.mocky.io/v2/5a087acf3200000203137fe5");
+            val url = URL("http://www.mocky.io/v2/5a193a96300000f71c63f49e");
             val jsonString = Scanner(url.openStream(), "UTF-8").useDelimiter("\\A").next()
 
 
@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
                 val name = dish.getString("name")
                 val description = dish.getString("description")
                 val price = dish.getDouble("price").toFloat()
-                val photo = dish.getInt("photo")
+                val photo = dish.getString("photo")
                 val allergensJson = dish.getJSONArray("allergens")
                 val allergenList = mutableListOf<Allergen>()
 
@@ -125,7 +125,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
                         val allergen = allergensJson.getJSONObject(allergenObj)
                         val id = allergen.getInt("id")
                         val name = allergen.getString("name")
-                        val icon = allergen.getInt("icon")
+                        val icon = allergen.getString("icon")
                         allergenList.add(Allergen(id, name, icon))
                     }
                 }

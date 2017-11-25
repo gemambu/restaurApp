@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.common.getAllergenInfo
+import com.gmb.restaurapp.common.getDishPhoto
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Table
 import com.gmb.restaurapp.model.Tables
@@ -22,7 +23,7 @@ class DishDetailFragment : Fragment() {
         fun newInstance(dish: Dish, tableNumber: Int): DishDetailFragment {
             val arguments = Bundle()
 
-            arguments.putSerializable(ARG_DISH_LIST, dish as Dish)
+            arguments.putSerializable(ARG_DISH_LIST, dish)
             arguments.putInt(EXTRA_TABLE_POSITION, tableNumber)
 
             val fragment = DishDetailFragment()
@@ -38,7 +39,7 @@ class DishDetailFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         if (inflater != null) {
-            root = inflater?.inflate(R.layout.fragment_dish_detail, container, false)
+            root = inflater.inflate(R.layout.fragment_dish_detail, container, false)
 
 
             table = Tables.get(arguments.getInt(EXTRA_TABLE_POSITION))
@@ -54,6 +55,11 @@ class DishDetailFragment : Fragment() {
             val allergen3 = root.findViewById<TextView>(R.id.allergen3)
             val allergen4 = root.findViewById<TextView>(R.id.allergen4)
 
+            val ivAllergen = root.findViewById<ImageView>(R.id.iv_allergen)
+            val ivAllergen2 = root.findViewById<ImageView>(R.id.iv_allergen2)
+            val ivAllergen3 = root.findViewById<ImageView>(R.id.iv_allergen3)
+            val ivAllergen4 = root.findViewById<ImageView>(R.id.iv_allergen4)
+
             val allergens = mutableListOf<TextView>(
                     allergen,
                     allergen2,
@@ -61,15 +67,22 @@ class DishDetailFragment : Fragment() {
                     allergen4
             )
 
+            val ivAllergens = mutableListOf<ImageView>(
+                    ivAllergen,
+                    ivAllergen2,
+                    ivAllergen3,
+                    ivAllergen4
+            )
+
             root.findViewById<Button>(R.id.add_dish_btn).setOnClickListener { addDish() }
             root.findViewById<Button>(R.id.cancel_dish_btn).setOnClickListener { cancelAdd() }
 
 
-            imageView.setImageResource(R.drawable.dim_sum)
-            description.text = dish?.description ?: ""
-            variant.setText(dish?.variant ?: "")
-            price.text = getString(R.string.dish_price, dish?.price ?: 0f)
-            getAllergenInfo(dish, allergens)
+            imageView.setImageResource(getDishPhoto(dish.photo))
+            description.text = dish.description
+            variant.setText(dish.variant)
+            price.text = getString(R.string.dish_price, dish.price)
+            getAllergenInfo(dish, allergens, ivAllergens)
         }
 
         return root
@@ -85,7 +98,7 @@ class DishDetailFragment : Fragment() {
     private fun addDish() {
 
         var dishVariant = dish.copy()
-        dishVariant.updateVariant(variant.text.toString() ?: "")
+        dishVariant.updateVariant(variant.text.toString())
         table.addDish(dishVariant)
 
         Toast.makeText(root.context, "Añadiendo plato en la mesa: ${table.number}", Toast.LENGTH_LONG)

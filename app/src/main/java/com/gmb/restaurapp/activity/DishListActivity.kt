@@ -14,7 +14,7 @@ import com.gmb.restaurapp.model.Dish
 import java.io.Serializable
 
 
-class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClickListener, Serializable {
+class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClickListener {
 
     companion object {
         val EXTRA_RESULT_DATA = "EXTRA_RESULT_DATA"
@@ -43,7 +43,7 @@ class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClic
         var listDishes =  intent.getSerializableExtra(EXTRA_DISH_LIST) as? MutableList<Dish>
         tablePosition= intent.getIntExtra(EXTRA_POSITION, 0)
 
-        val fragment = DishListFragment.newInstance(listDishes, tablePosition, this)
+        val fragment = DishListFragment.newInstance(listDishes, tablePosition)
         fragmentManager
                 .beginTransaction()
                 .add(R.id.dish_list_fragment, fragment)

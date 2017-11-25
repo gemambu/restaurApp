@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.common.getAllergenInfo
+import com.gmb.restaurapp.common.getDishPhoto
 import com.gmb.restaurapp.model.Dish
 
 
@@ -36,30 +37,42 @@ class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, v
         val dishName = itemView.findViewById<TextView>(R.id.dish)
         val dishPrice = itemView.findViewById<TextView>(R.id.dish_price)
         val dishImage = itemView.findViewById<ImageView>(R.id.dish_image)
+
         val allergen = itemView.findViewById<TextView>(R.id.allergen)
         val allergen2 = itemView.findViewById<TextView>(R.id.allergen2)
         val allergen3 = itemView.findViewById<TextView>(R.id.allergen3)
         val allergen4 = itemView.findViewById<TextView>(R.id.allergen4)
 
-        val allergens = mutableListOf<TextView>(
+        val ivAllergen = itemView.findViewById<ImageView>(R.id.iv_allergen)
+        val ivAllergen2 = itemView.findViewById<ImageView>(R.id.iv_allergen2)
+        val ivAllergen3 = itemView.findViewById<ImageView>(R.id.iv_allergen3)
+        val ivAllergen4 = itemView.findViewById<ImageView>(R.id.iv_allergen4)
+
+        private val allergens = mutableListOf<TextView>(
                 allergen,
                 allergen2,
                 allergen3,
                 allergen4
         )
 
+        private val ivAllergens = mutableListOf<ImageView>(
+                ivAllergen,
+                ivAllergen2,
+                ivAllergen3,
+                ivAllergen4
+        )
 
 
         fun bindDish(dish: Dish, position: Int) {
             // accedemos al contexto
-            val context = itemView.context
+            //val context = itemView.context
 
             // actualizamos la vista (itemView, que es la tarjeta) con el modelo
             dishName.text = dish.name
-            dishPrice.text = itemView.context.getString(R.string.dish_price, dish?.price ?: 0f)
-            dishImage.setImageResource(R.drawable.dim_sum)
+            dishPrice.text = itemView.context.getString(R.string.dish_price, dish.price)
+            dishImage.setImageResource(getDishPhoto(dish.photo))
 
-            getAllergenInfo(dish, allergens)
+            getAllergenInfo(dish, allergens, ivAllergens)
 
 
             itemView.setOnClickListener {

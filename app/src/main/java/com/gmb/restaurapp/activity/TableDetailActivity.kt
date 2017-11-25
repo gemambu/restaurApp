@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_table_detail.*
 import java.io.Serializable
 
 
-class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishClickListener, Serializable {
+class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishClickListener {
 
     companion object {
         lateinit var table: Table
@@ -36,7 +36,7 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
         context = baseContext
 
         // findViewById<View>(R.id.calculate_bill_btn).setOnClickListener { showBill() }
-        show_menu_btn.setOnClickListener { v-> showMenu() }
+        show_menu_btn.setOnClickListener { _ -> showMenu() }
 
         val intent = intent
 
@@ -50,7 +50,7 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
 
     private fun showDishes() {
 
-        val fragment = DishListFragment.newInstance(table.dishes, tablePosition, this)
+        val fragment = DishListFragment.newInstance(table.dishes, tablePosition)
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.dish_list_fragment, fragment)
@@ -60,14 +60,14 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
     private fun showMenu() {
 
         startActivity(DishListActivity.intent(context,
-                MainActivity?.menu as MutableList<Dish>,
+                MainActivity.menu as MutableList<Dish>,
                 tablePosition))
 
     }
 
     private fun showBill() {
 
-        val total = table.calculateBill() ?: 0
+        val total = table.calculateBill()
         var title = "Cuenta de la mesa ${table.number}"
         var message = "Total a pagar: ${total} euros"
 

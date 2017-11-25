@@ -2,6 +2,7 @@ package com.gmb.restaurapp.fragment
 
 import android.app.Activity
 import android.app.Fragment
+import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.GridLayoutManager
@@ -21,21 +22,20 @@ class DishListFragment : Fragment() {
 
     companion object {
         val ARG_DISH_LIST = "ARG_DISH_LIST"
-        val EXTRA_TABLE_NUMBER = "EXTRA_TABLE_POSITION"
-        val EXTRA_LISTENER = "EXTRA_LISTENER"
+        val ARG_TABLE_NUMBER = "ARG_TABLE_POSITION"
 
         var listData: MutableList<Dish>? = null
+        var onDishClickListener: DishRecyclerViewAdapter.OnDishClickListener? = null
 
         lateinit var dishList: RecyclerView
         lateinit var root: View
         lateinit var table: Table
 
-        fun newInstance(dishList: MutableList<Dish>?, tableNumber: Int, listener: DishRecyclerViewAdapter.OnDishClickListener): DishListFragment {
+        fun newInstance(dishList: MutableList<Dish>?, tableNumber: Int): DishListFragment {
             val arguments = Bundle()
 
             arguments.putSerializable(ARG_DISH_LIST, dishList as? Serializable)
-            arguments.putInt(EXTRA_TABLE_NUMBER, tableNumber)
-            arguments.putSerializable(EXTRA_LISTENER, listener as Serializable)
+            arguments.putInt(ARG_TABLE_NUMBER, tableNumber)
 
             val fragment = DishListFragment()
             fragment.arguments = arguments
@@ -49,13 +49,12 @@ class DishListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
         if (inflater != null) {
-            root = inflater?.inflate(R.layout.fragment_dish_list, container, false)
+            root = inflater.inflate(R.layout.fragment_dish_list, container, false)
 
             listData = arguments.getSerializable(ARG_DISH_LIST) as? MutableList<Dish>
-            table = Tables.get(arguments.getInt(EXTRA_TABLE_NUMBER))
-            val listener = arguments.getSerializable(EXTRA_LISTENER) as? DishRecyclerViewAdapter.OnDishClickListener
+            table = Tables.get(arguments.getInt(ARG_TABLE_NUMBER))
 
-            val dishListAdapter = DishRecyclerViewAdapter(listData, table.number, listener)
+            val dishListAdapter = DishRecyclerViewAdapter(listData, table.number, onDishClickListener)
 
             dishList = root.findViewById<RecyclerView>(R.id.recycler_view_dish)
             dishList.adapter = dishListAdapter
@@ -66,6 +65,32 @@ class DishListFragment : Fragment() {
 
         return root
 
+    }
+
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        commonOnAttach(context)
+    }
+
+    override fun onAttach(activity: Activity?) {
+        super.onAttach(activity)
+        commonOnAttach(activity)
+    }
+
+    fun commonOnAttach(context: Context?) {
+        // Aquí nos llaman cuando el fragment "se engancha" a la actividad, y por tanto ya pertence a ella
+        // Lo que vamos a hacer es quedarnos con la referencia a esa actividad para cuando tengamos que avisarle de "cosas"
+        if (context is DishRecyclerViewAdapter.OnDishClickListener) {
+            onDishClickListener = context
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+
+        // Si la actividad se "desengancha" de este fragment ya no tiene sentido guardar una referencia a ella, ya no le vamos
+        // a avisar de nada, lo ponemos a null
+        onDishClickListener = null
     }
 
 }

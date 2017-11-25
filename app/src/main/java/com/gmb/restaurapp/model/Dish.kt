@@ -7,7 +7,7 @@ open class Dish(val id: Int,
                 val name: String,
                 val description: String,
                 val price: Float,
-                val photo: Int,
+                val photo: String,
                 val allergens: List<Allergen>?,
                 var variant: String?
 ) : Serializable {
