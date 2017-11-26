@@ -9,12 +9,15 @@ import android.view.View
 import com.gmb.restaurapp.fragment.DishListFragment
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.adapter.DishRecyclerViewAdapter
+import com.gmb.restaurapp.common.PREVIOUS_ACTIITY
+import com.gmb.restaurapp.common.PREV_ACT
 import com.gmb.restaurapp.fragment.DishDetailFragment
+import com.gmb.restaurapp.fragment.OnSaveButtonPressedListener
 import com.gmb.restaurapp.model.Dish
 import java.io.Serializable
 
 
-class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClickListener {
+class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClickListener, OnSaveButtonPressedListener {
 
     companion object {
         val EXTRA_RESULT_DATA = "EXTRA_RESULT_DATA"
@@ -52,11 +55,17 @@ class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClic
 
     override fun onDishClicked(position: Int, dish: Dish, tableNumber: Int, view: View) {
 
+        PREVIOUS_ACTIITY = PREV_ACT.MENU
         val fragment = DishDetailFragment.newInstance(dish, tablePosition)
         fragmentManager.beginTransaction()
                 .replace(R.id.dish_list_fragment, fragment)
-                .addToBackStack(null)
+                .addToBackStack("pila1")
                 .commit()
     }
+
+    override fun onSavePressed(view: View) {
+        finish()
+    }
+
 
 }

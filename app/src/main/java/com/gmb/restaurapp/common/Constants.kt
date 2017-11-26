@@ -6,11 +6,12 @@ enum class VIEW_MAIN(val index: Int){
     LOADING(0),
     SHOW_TABLES(1)
 }
-
-enum class FATHER_ACTIVITY{
-    TABLE_DETAIL,
-    MENU
+enum class PREV_ACT(val index: Int){
+    DETAIL(0),
+    MENU(1)
 }
+
+var PREVIOUS_ACTIITY: PREV_ACT = PREV_ACT.DETAIL
 
 val ALLERGENS: Map<String, Int> = mapOf(
         "a_1" to R.drawable.a_1,
