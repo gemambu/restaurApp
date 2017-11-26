@@ -7,6 +7,7 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
@@ -150,6 +151,14 @@ class DishDetailFragment : Fragment() {
         // Si la actividad se "desengancha" de este fragment ya no tiene sentido guardar una referencia a ella, ya no le vamos
         // a avisar de nada, lo ponemos a null
         onSaveButtonPressed = null
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.home) {
+            fragmentManager.popBackStack()
+        }
+
+        return true
     }
 }
 

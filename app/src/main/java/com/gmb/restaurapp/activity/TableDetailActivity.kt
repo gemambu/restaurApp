@@ -5,6 +5,8 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.activity.MainActivity.Companion.EXTRA_TABLE_NUMBER
@@ -56,6 +58,19 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
         showDishes()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+         super.onCreateOptionsMenu(menu)
+         getMenuInflater()?.inflate(R.menu.settings, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == R.id.menu_bill) {
+            showBill()
+        }
+
+        return true
+    }
 
     private fun showDishes() {
 
@@ -72,6 +87,7 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
                 tablePosition))
 
     }
+
 
     private fun showBill() {
 
@@ -102,4 +118,6 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
                 .addToBackStack(null)
                 .commit()
     }
+
+
 }

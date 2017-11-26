@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.view.MenuItem
 import android.view.View
 import com.gmb.restaurapp.fragment.DishListFragment
 import com.gmb.restaurapp.R
@@ -16,6 +17,8 @@ import com.gmb.restaurapp.fragment.DishDetailFragment
 import com.gmb.restaurapp.fragment.OnSaveButtonPressedListener
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Tables
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
 import java.io.Serializable
 
 
@@ -51,14 +54,18 @@ class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClic
         var listDishes =  intent.getSerializableExtra(EXTRA_DISH_LIST) as? MutableList<Dish>
         tablePosition= intent.getIntExtra(EXTRA_POSITION, 0)
 
-        val fragment = DishListFragment.newInstance(listDishes, tablePosition)
-        fragmentManager
-                .beginTransaction()
-                .replace(R.id.dish_list_fragment, fragment)
-                .commit()
+        async(UI) {
+            val fragment = DishListFragment.newInstance(listDishes, tablePosition)
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.dish_list_fragment, fragment)
+                    .commit()
+
+        }
+
 
         supportActionBar?.title = "Menú para mesa: ${Tables[tablePosition].number}"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onDishClicked(position: Int, dish: Dish, tableNumber: Int, view: View) {
@@ -71,9 +78,18 @@ class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClic
     }
 
     override fun onSavePressed(view: View) {
-        //finish()
+        finish()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == android.R.id.home) {
+            // se ha pulsado la flecha de back
+            //finish()
 
 
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 

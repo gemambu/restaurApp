@@ -11,6 +11,8 @@ import com.gmb.restaurapp.R
 import com.gmb.restaurapp.common.getAllergenInfo
 import com.gmb.restaurapp.common.getDishPhoto
 import com.gmb.restaurapp.model.Dish
+import kotlinx.coroutines.experimental.android.UI
+import kotlinx.coroutines.experimental.async
 
 
 class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, val listener: OnDishClickListener?) : RecyclerView.Adapter<DishRecyclerViewAdapter.DishViewHolder>() {
@@ -24,6 +26,7 @@ class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, v
     }
 
     override fun onBindViewHolder(holder: DishViewHolder?, position: Int) {
+
         if (dishList != null) {
             holder?.bindDish(dishList[position], position)
         }
