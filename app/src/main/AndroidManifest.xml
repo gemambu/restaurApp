@@ -11,16 +11,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.MainActivity">
+        <activity
+            android:name=".activity.MainActivity"
+            android:theme="@style/AppTheme.noActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.TableDetailActivity"
+        <activity
+            android:name=".activity.TableDetailActivity"
+            android:theme="@style/AppTheme.noActionBar"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activity.DishListActivity"/>
+        <activity
+            android:name=".activity.DishListActivity"
+            android:theme="@style/AppTheme.noActionBar" />
     </application>
 
 </manifest>

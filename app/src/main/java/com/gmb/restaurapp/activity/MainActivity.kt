@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.widget.ViewSwitcher
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.common.VIEW_MAIN
@@ -32,6 +33,8 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
+
         viewSwitcher = findViewById(R.id.view_switcher)
         viewSwitcher.setInAnimation(this, android.R.anim.fade_in)
         viewSwitcher.setInAnimation(this, android.R.anim.fade_out)
@@ -42,6 +45,11 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
         } else {
             showTableList()
         }
+
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
+        supportActionBar?.title = "RestaurApp"
 
     }
 

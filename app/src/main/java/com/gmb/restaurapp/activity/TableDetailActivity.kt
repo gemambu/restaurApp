@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.Toolbar
 import android.view.View
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.activity.MainActivity.Companion.EXTRA_TABLE_NUMBER
@@ -33,6 +34,9 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
         setContentView(R.layout.activity_table_detail)
 
 
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+
         context = baseContext
 
         // findViewById<View>(R.id.calculate_bill_btn).setOnClickListener { showBill() }
@@ -42,6 +46,9 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
         tablePosition = intent.getIntExtra(EXTRA_TABLE_NUMBER, 1)
 
         table = Tables.get(tablePosition)
+
+        supportActionBar?.title = "Mesa ${table.number}"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onResume() {

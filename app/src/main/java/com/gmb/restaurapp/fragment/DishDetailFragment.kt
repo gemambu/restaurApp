@@ -5,6 +5,7 @@ import android.app.Fragment
 import android.app.FragmentManager
 import android.content.Context
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -81,6 +82,10 @@ class DishDetailFragment : Fragment() {
             root.findViewById<Button>(R.id.add_dish_btn).setOnClickListener { saveDish() }
             root.findViewById<Button>(R.id.cancel_dish_btn).setOnClickListener { cancelAdd() }
 
+            val supportActionBar = (activity as? AppCompatActivity)?.supportActionBar
+            supportActionBar?.title = dish.name
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         }
 
         return root
@@ -88,6 +93,7 @@ class DishDetailFragment : Fragment() {
     }
 
     private fun cancelAdd() {
+        //fragmentManager.popBackStack()
         fragmentManager.popBackStack()
     }
 

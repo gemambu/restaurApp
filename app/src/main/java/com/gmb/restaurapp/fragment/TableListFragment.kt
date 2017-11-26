@@ -5,18 +5,14 @@ import android.app.Activity
 import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.FloatingActionButton
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.ListView
+import com.gmb.restaurapp.R
 import com.gmb.restaurapp.model.Table
 import com.gmb.restaurapp.model.Tables
-import com.gmb.restaurapp.R
-import kotlinx.android.synthetic.main.activity_table_detail.*
-import kotlinx.android.synthetic.main.fragment_table_list.*
 
 
 class TableListFragment : Fragment() {
@@ -51,6 +47,7 @@ class TableListFragment : Fragment() {
             // notifico al listener
             onTableSelectedListener?.onTableSelected(position)
         }
+
 
         return root
 
