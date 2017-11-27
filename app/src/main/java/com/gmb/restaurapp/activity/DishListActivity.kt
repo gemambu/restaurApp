@@ -11,7 +11,6 @@ import com.gmb.restaurapp.R
 import com.gmb.restaurapp.adapter.DishRecyclerViewAdapter
 import com.gmb.restaurapp.common.PREVIOUS_ACTIITY
 import com.gmb.restaurapp.common.PREV_ACT
-import com.gmb.restaurapp.fragment.DishDetailFragment
 import com.gmb.restaurapp.fragment.DishListFragment
 import com.gmb.restaurapp.fragment.OnSaveButtonPressedListener
 import com.gmb.restaurapp.model.Dish
@@ -21,7 +20,7 @@ import kotlinx.coroutines.experimental.async
 import java.io.Serializable
 
 
-class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClickListener, OnSaveButtonPressedListener {
+class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClickListener {
 
     companion object {
         val EXTRA_DISH_LIST = "EXTRA_DISH_LIST"
@@ -62,22 +61,19 @@ class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClic
         }
 
 
-        supportActionBar?.title = "Menú para mesa: ${Tables[tablePosition].number}"
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = getString(R.string.table_menu_title,Tables[tablePosition].number)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onDishClicked(position: Int, dish: Dish, tableNumber: Int, view: View) {
 
         PREVIOUS_ACTIITY = PREV_ACT.MENU
-        val fragment = DishDetailFragment.newInstance(dish, tablePosition)
-        fragmentManager.beginTransaction()
-                .replace(R.id.dish_list_fragment, fragment)
-                .commit()
+        val intentDetail = DishDetailActivity.intent(this, dish, tablePosition)
+        startActivity(intentDetail)
+        finish()
+
     }
 
-    override fun onSavePressed(view: View) {
-        finish()
-    }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == android.R.id.home) {

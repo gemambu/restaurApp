@@ -49,7 +49,7 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
 
         table = Tables[tablePosition]
 
-        supportActionBar?.title = "Mesa ${table.number}"
+        supportActionBar?.title = getString(R.string.detail_table_number, table.number)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
@@ -112,11 +112,15 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
     override fun onDishClicked(position: Int, dish: Dish, tableNumber: Int, view: View) {
 
         PREVIOUS_ACTIITY = PREV_ACT.DETAIL
-        val fragment = DishDetailFragment.newInstance(dish, tablePosition)
-        fragmentManager.beginTransaction()
-                .replace(R.id.dish_list_fragment, fragment)
-                .addToBackStack(null)
-                .commit()
+        val intent = DishDetailActivity.intent(this, dish, tablePosition)
+        startActivity(intent)
+
+
+//        val fragment = DishDetailFragment.newInstance(dish, tablePosition)
+//        fragmentManager.beginTransaction()
+//                .replace(R.id.dish_list_fragment, fragment)
+//                .addToBackStack(null)
+//                .commit()
     }
 
 

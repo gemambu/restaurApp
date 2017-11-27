@@ -93,7 +93,7 @@ class DishDetailFragment : Fragment() {
     }
 
     private fun cancelAdd() {
-        fragmentManager.popBackStack()
+        activity.getFragmentManager().beginTransaction().remove(this).commit();
     }
 
     private fun saveDish() {

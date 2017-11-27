@@ -22,10 +22,11 @@
         </activity>
         <activity
             android:name=".activity.TableDetailActivity"
-            android:theme="@style/AppTheme.noActionBar"
-            android:windowSoftInputMode="adjustPan" />
+            android:theme="@style/AppTheme.noActionBar" />
         <activity
             android:name=".activity.DishListActivity"
+            android:theme="@style/AppTheme.noActionBar" />
+        <activity android:name=".activity.DishDetailActivity"
             android:theme="@style/AppTheme.noActionBar"
             android:windowSoftInputMode="adjustPan"/>
     </application>
