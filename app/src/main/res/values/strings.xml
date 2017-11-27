@@ -14,4 +14,11 @@
     <string name="dish_description">Descripción del plato</string>
     <string name="error_downloading_menu">Error</string>
     <string name="error_menu_message">No se ha podido descargar el menú</string>
+    <string name="title_bill">Cuenta de la mesa %d</string>
+    <string name="message_bill">Total a pagar: %.2f euros</string>
+    <string name="message_bill_empty">No hay platos añadidos</string>
+    <string name="message_dish_added">Añadiendo plato en la mesa: %d</string>
+    <string name="message_dish_updated">Actualizando plato en la mesa: %d</string>
+    <string name="title_main">RestaurApp!</string>
+    <string name="decription_image_allergen">Allergen image</string>
 </resources>

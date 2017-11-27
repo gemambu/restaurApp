@@ -17,23 +17,14 @@ import com.gmb.restaurapp.model.Tables
 
 class TableListFragment : Fragment() {
 
-    companion object {
-        private val TABLE_NUMBER = "EXTRA_TABLE_NUMBER"
-        lateinit var list: ListView
-
-    }
-
-    lateinit var root: View
+    private lateinit var list: ListView
+    private lateinit var root: View
     private var onTableSelectedListener: OnTableSelectedListener? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         root = inflater.inflate(R.layout.fragment_table_list, container, false)
-        list = root.findViewById<ListView>(R.id.table_list_fragment)
+        list = root.findViewById(R.id.table_list_fragment)
 
         // Quizá pueda meter como setup el número de mesas
         Tables.initTables(10)
@@ -55,13 +46,11 @@ class TableListFragment : Fragment() {
 
     private fun addTable() {
         Tables.addTable()
-
     }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         commonAttach(context)
-
 
     }
 
@@ -76,7 +65,7 @@ class TableListFragment : Fragment() {
         onTableSelectedListener = null
     }
 
-    fun commonAttach(listener: Any?){
+    private fun commonAttach(listener: Any?){
         if (listener is OnTableSelectedListener) {
             onTableSelectedListener = listener
         }

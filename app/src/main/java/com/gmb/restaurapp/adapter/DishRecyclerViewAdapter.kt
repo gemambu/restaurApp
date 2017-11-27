@@ -1,6 +1,5 @@
 package com.gmb.restaurapp.adapter
 
-import android.app.Activity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +10,9 @@ import com.gmb.restaurapp.R
 import com.gmb.restaurapp.common.getAllergenInfo
 import com.gmb.restaurapp.common.getDishPhoto
 import com.gmb.restaurapp.model.Dish
-import kotlinx.coroutines.experimental.android.UI
-import kotlinx.coroutines.experimental.async
 
 
-class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, val listener: OnDishClickListener?) : RecyclerView.Adapter<DishRecyclerViewAdapter.DishViewHolder>() {
+class DishRecyclerViewAdapter(private val dishList: List<Dish>?, val tableNumber: Int, private val listener: OnDishClickListener?) : RecyclerView.Adapter<DishRecyclerViewAdapter.DishViewHolder>() {
 
     private var onDishClickListener: OnDishClickListener? = null
 
@@ -37,23 +34,23 @@ class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, v
 
     inner class DishViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        val dishName = itemView.findViewById<TextView>(R.id.dish)
-        val dishPrice = itemView.findViewById<TextView>(R.id.dish_price)
-        val dishImage = itemView.findViewById<ImageView>(R.id.dish_image)
+        private val dishName = itemView.findViewById<TextView>(R.id.dish)
+        private val dishPrice = itemView.findViewById<TextView>(R.id.dish_price)
+        private val dishImage = itemView.findViewById<ImageView>(R.id.dish_image)
 
 
         private val allergens = mutableListOf<TextView>(
-                itemView.findViewById<TextView>(R.id.allergen),
-                itemView.findViewById<TextView>(R.id.allergen2),
-                itemView.findViewById<TextView>(R.id.allergen3),
-                itemView.findViewById<TextView>(R.id.allergen4)
+                itemView.findViewById(R.id.allergen),
+                itemView.findViewById(R.id.allergen2),
+                itemView.findViewById(R.id.allergen3),
+                itemView.findViewById(R.id.allergen4)
         )
 
         private val ivAllergens = mutableListOf<ImageView>(
-                itemView.findViewById<ImageView>(R.id.iv_allergen),
-                itemView.findViewById<ImageView>(R.id.iv_allergen2),
-                itemView.findViewById<ImageView>(R.id.iv_allergen3),
-                itemView.findViewById<ImageView>(R.id.iv_allergen4)
+                itemView.findViewById(R.id.iv_allergen),
+                itemView.findViewById(R.id.iv_allergen2),
+                itemView.findViewById(R.id.iv_allergen3),
+                itemView.findViewById(R.id.iv_allergen4)
         )
 
 
@@ -67,7 +64,7 @@ class DishRecyclerViewAdapter(val dishList: List<Dish>?, val tableNumber: Int, v
             getAllergenInfo(dish, allergens, ivAllergens)
 
             itemView.setOnClickListener {
-                onDishClickListener?.onDishClicked(position, dish, tableNumber, itemView);
+                onDishClickListener?.onDishClicked(position, dish, tableNumber, itemView)
             }
 
         }

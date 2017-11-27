@@ -10,8 +10,8 @@ import org.junit.Before
 
 class TableModelUnitTest {
 
-    lateinit var table: Table
-    lateinit var emptyTable: Table
+    private lateinit var table: Table
+    private lateinit var emptyTable: Table
 
     @Before
     fun setup() {
@@ -19,7 +19,7 @@ class TableModelUnitTest {
                 "plato1",
                 "desc plato 1",
                 22.3f,
-                16,
+                "aa",
                 null,
                 "variante cliente 1")
 
@@ -27,11 +27,11 @@ class TableModelUnitTest {
                 "plato2",
                 "desc plato 2",
                 30.0f,
-                13,
+                "bb",
                 null,
                 null)
 
-        val dishes: List<Dish> = listOf(dish, dish2)
+        val dishes: MutableList<Dish> = mutableListOf(dish, dish2)
         table = Table(1, dishes)
 
         emptyTable = Table(2, null)

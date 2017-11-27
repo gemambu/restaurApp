@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
         val EXTRA_TABLE_NUMBER = "EXTRA_TABLE_NUMBER"
     }
 
-    lateinit var viewSwitcher: ViewSwitcher
+    private lateinit var viewSwitcher: ViewSwitcher
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -104,14 +104,14 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
         try {
             Thread.sleep(2000)
 
-            val url = URL("http://www.mocky.io/v2/5a193a96300000f71c63f49e");
+            val url = URL("http://www.mocky.io/v2/5a193a96300000f71c63f49e")
             val jsonString = Scanner(url.openStream(), "UTF-8").useDelimiter("\\A").next()
 
 
             val jsonRoot = JSONObject(jsonString.toString())
             val dishesList = jsonRoot.getJSONArray("dishes")
 
-            var menuList = mutableListOf<Dish>()
+            val menuList = mutableListOf<Dish>()
 
             for(dishObj in 0 until dishesList.length()) {
 
@@ -148,7 +148,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
     }
 
     override fun onTableSelected(position: Int) {
-        var intent = Intent(this, TableDetailActivity::class.java)
+        val intent = Intent(this, TableDetailActivity::class.java)
         intent.putExtra(EXTRA_TABLE_NUMBER, position)
         startActivity(intent)
     }

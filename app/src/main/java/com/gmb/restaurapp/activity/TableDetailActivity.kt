@@ -47,7 +47,7 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
         val intent = intent
         tablePosition = intent.getIntExtra(EXTRA_TABLE_NUMBER, 1)
 
-        table = Tables.get(tablePosition)
+        table = Tables[tablePosition]
 
         supportActionBar?.title = "Mesa ${table.number}"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -60,7 +60,7 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
          super.onCreateOptionsMenu(menu)
-         getMenuInflater()?.inflate(R.menu.settings, menu)
+         menuInflater?.inflate(R.menu.settings, menu)
         return true
     }
 
@@ -92,16 +92,16 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
     private fun showBill() {
 
         val total = table.calculateBill()
-        var title = "Cuenta de la mesa ${table.number}"
-        var message = "Total a pagar: ${total} euros"
+
+        var message = getString(R.string.message_bill, total)
 
 
         when (total) {
-            0f -> message = "No hay platos añadidos."
+            0f -> message = getString(R.string.message_bill_empty)
         }
 
         AlertDialog.Builder(this)
-                .setTitle(title)
+                .setTitle(getString(R.string.title_bill, table.number))
                 .setMessage(message)
                 .setPositiveButton(getString(android.R.string.ok), { dialog, _ ->
                     dialog.dismiss()

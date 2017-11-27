@@ -6,9 +6,9 @@ enum class VIEW_MAIN(val index: Int){
     LOADING(0),
     SHOW_TABLES(1)
 }
-enum class PREV_ACT(val index: Int){
-    DETAIL(0),
-    MENU(1)
+enum class PREV_ACT{
+    DETAIL,
+    MENU
 }
 
 var PREVIOUS_ACTIITY: PREV_ACT = PREV_ACT.DETAIL

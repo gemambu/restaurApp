@@ -12,8 +12,6 @@ open class Dish(val id: Int,
                 var variant: String?
 ) : Serializable {
 
-    fun getAllergens() = allergens?.size ?: 0
-
     fun updateVariant(newVariant: String){
         this.variant = newVariant
     }

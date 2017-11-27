@@ -18,9 +18,9 @@ fun getAllergenInfo(dish: Dish, allergens: MutableList<TextView>, icons: Mutable
 }
 
 fun getAllergenIcon(icon: String): Int {
-    return ALLERGENS.get(icon) ?: 0
+    return ALLERGENS[icon] ?: 0
 }
 
 fun getDishPhoto(photo: String): Int{
-    return PICTURES.get(photo) ?: R.drawable.no_photo
+    return PICTURES[photo] ?: R.drawable.no_photo
 }

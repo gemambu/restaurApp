@@ -27,8 +27,7 @@ class DishListFragment : Fragment() {
         var listData: MutableList<Dish>? = null
         var onDishClickListener: DishRecyclerViewAdapter.OnDishClickListener? = null
 
-        lateinit var dishList: RecyclerView
-        lateinit var root: View
+
         lateinit var table: Table
 
         fun newInstance(dishList: MutableList<Dish>?, tableNumber: Int): DishListFragment {
@@ -44,7 +43,8 @@ class DishListFragment : Fragment() {
         }
     }
 
-
+    private lateinit var dishList: RecyclerView
+    private lateinit var root: View
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
 
@@ -52,11 +52,11 @@ class DishListFragment : Fragment() {
             root = inflater.inflate(R.layout.fragment_dish_list, container, false)
 
             listData = arguments.getSerializable(ARG_DISH_LIST) as? MutableList<Dish>
-            table = Tables.get(arguments.getInt(ARG_TABLE_NUMBER))
+            table = Tables[arguments.getInt(ARG_TABLE_NUMBER)]
 
             val dishListAdapter = DishRecyclerViewAdapter(listData, table.number, onDishClickListener)
 
-            dishList = root.findViewById<RecyclerView>(R.id.recycler_view_dish)
+            dishList = root.findViewById(R.id.recycler_view_dish)
             dishList.adapter = dishListAdapter
             dishList.layoutManager = GridLayoutManager(activity, 1)
             dishList.itemAnimator = DefaultItemAnimator()
@@ -77,7 +77,7 @@ class DishListFragment : Fragment() {
         commonOnAttach(activity)
     }
 
-    fun commonOnAttach(context: Context?) {
+    private fun commonOnAttach(context: Context?) {
         // Aquí nos llaman cuando el fragment "se engancha" a la actividad, y por tanto ya pertence a ella
         // Lo que vamos a hacer es quedarnos con la referencia a esa actividad para cuando tengamos que avisarle de "cosas"
         if (context is DishRecyclerViewAdapter.OnDishClickListener) {

@@ -1,10 +1,7 @@
 package com.gmb.restaurapp
 
-import com.gmb.restaurapp.model.Dish
-import com.gmb.restaurapp.model.Table
 import com.gmb.restaurapp.model.Tables
 import org.junit.Assert
-import org.junit.Before
 import org.junit.Test
 
 class TablesModelUnitTest {

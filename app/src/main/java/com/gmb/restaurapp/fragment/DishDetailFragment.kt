@@ -2,7 +2,6 @@ package com.gmb.restaurapp.fragment
 
 import android.app.Activity
 import android.app.Fragment
-import android.app.FragmentManager
 import android.content.Context
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -42,34 +41,34 @@ class DishDetailFragment : Fragment() {
     }
 
     lateinit var dish: Dish
-    lateinit var table: Table
-    lateinit var root: View
-    lateinit var variant: EditText
+    private lateinit var table: Table
+    private lateinit var root: View
+    private lateinit var variant: EditText
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
         if (inflater != null) {
             root = inflater.inflate(R.layout.fragment_dish_detail, container, false)
 
-            table = Tables.get(arguments.getInt(EXTRA_TABLE_POSITION))
+            table = Tables[arguments.getInt(EXTRA_TABLE_POSITION)]
             dish = arguments.getSerializable(ARG_DISH_LIST) as Dish
 
             val imageView = root.findViewById<ImageView>(R.id.dish_detail_photo)
             val description = root.findViewById<TextView>(R.id.dish_description)
-            variant = root.findViewById<EditText>(R.id.dish_variant)
+            variant = root.findViewById(R.id.dish_variant)
             val price = root.findViewById<TextView>(R.id.dish_price)
 
             val allergens = mutableListOf<TextView>(
-                    root.findViewById<TextView>(R.id.allergen),
-                    root.findViewById<TextView>(R.id.allergen2),
-                    root.findViewById<TextView>(R.id.allergen3),
-                    root.findViewById<TextView>(R.id.allergen4)
+                    root.findViewById(R.id.allergen),
+                    root.findViewById(R.id.allergen2),
+                    root.findViewById(R.id.allergen3),
+                    root.findViewById(R.id.allergen4)
             )
 
             val ivAllergens = mutableListOf<ImageView>(
-                    root.findViewById<ImageView>(R.id.iv_allergen),
-                    root.findViewById<ImageView>(R.id.iv_allergen2),
-                    root.findViewById<ImageView>(R.id.iv_allergen3),
-                    root.findViewById<ImageView>(R.id.iv_allergen4)
+                    root.findViewById(R.id.iv_allergen),
+                    root.findViewById(R.id.iv_allergen2),
+                    root.findViewById(R.id.iv_allergen3),
+                    root.findViewById(R.id.iv_allergen4)
             )
 
             getAllergenInfo(dish, allergens, ivAllergens)
@@ -94,7 +93,6 @@ class DishDetailFragment : Fragment() {
     }
 
     private fun cancelAdd() {
-        //fragmentManager.popBackStack()
         fragmentManager.popBackStack()
     }
 
@@ -103,18 +101,18 @@ class DishDetailFragment : Fragment() {
 
         when(PREVIOUS_ACTIITY){
             PREV_ACT.MENU -> {
-                var dishVariant = dish.copy()
+                val dishVariant = dish.copy()
                 dishVariant.updateVariant(variant.text.toString())
                 table.addDish(dishVariant)
 
-                message ="Añadiendo plato en la mesa: ${table.number}"
+                message = getString(R.string.message_dish_added, table.number)
 
                 onSaveButtonPressed?.onSavePressed(root.rootView)
 
             }
             PREV_ACT.DETAIL -> {
                 dish.updateVariant(variant.text.toString())
-                message ="Actualizando plato en la mesa: ${table.number}"
+                message = getString(R.string.message_dish_updated, table.number)
             }
         }
 
@@ -137,7 +135,7 @@ class DishDetailFragment : Fragment() {
         commonOnAttach(activity)
     }
 
-    fun commonOnAttach(context: Context?) {
+    private fun commonOnAttach(context: Context?) {
         // Aquí nos llaman cuando el fragment "se engancha" a la actividad, y por tanto ya pertence a ella
         // Lo que vamos a hacer es quedarnos con la referencia a esa actividad para cuando tengamos que avisarle de "cosas"
         if (context is OnSaveButtonPressedListener) {
