@@ -26,7 +26,8 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activity.DishListActivity"
-            android:theme="@style/AppTheme.noActionBar" />
+            android:theme="@style/AppTheme.noActionBar"
+            android:windowSoftInputMode="adjustPan"/>
     </application>
 
 </manifest>
