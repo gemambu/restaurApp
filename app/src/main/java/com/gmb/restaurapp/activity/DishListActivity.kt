@@ -68,9 +68,13 @@ class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClic
 
         PREVIOUS_ACTIITY = PREV_ACT.MENU
         val intentDetail = DishDetailActivity.intent(this, dish, tablePosition)
-        startActivity(intentDetail)
-        finish()
+        startActivityForResult(intentDetail, 1)
+    }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
+        if (requestCode == 1 && resultCode == RESULT_OK){
+            finish()
+        }
     }
 
 

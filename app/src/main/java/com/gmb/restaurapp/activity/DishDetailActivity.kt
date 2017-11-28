@@ -15,6 +15,9 @@ import com.gmb.restaurapp.fragment.DetailDishListener
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Tables
 import java.io.Serializable
+import android.app.Activity
+
+
 
 class DishDetailActivity : AppCompatActivity(), DetailDishListener {
 
@@ -69,26 +72,14 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
 
     override fun onSavePressed(view: View) {
 
+        val intent = Intent()
+        intent.putExtra("result", 0)
+        setResult(RESULT_OK, intent)
         finish()
     }
-    
 
     override fun onCancelPressed(view: View) {
-
-//        when(PREVIOUS_ACTIITY){
-//            PREV_ACT.MENU -> {
-//                startActivity(DishListActivity.intent(context,
-//                        MainActivity.menu as MutableList<Dish>,
-//                        TableDetailActivity.tablePosition))
-//
-//            }
-//            PREV_ACT.TABLE_DETAIL -> {
-//                val intent = Intent(this, TableDetailActivity::class.java)
-//                intent.putExtra(MainActivity.EXTRA_TABLE_NUMBER, tablePosition)
-//                startActivity(intent)
-//            }
-//        }
-//
-//        finish()
+        setResult(Activity.RESULT_CANCELED, Intent())
+        finish()
     }
 }

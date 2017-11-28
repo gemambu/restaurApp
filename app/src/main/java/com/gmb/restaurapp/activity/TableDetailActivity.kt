@@ -58,14 +58,15 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-         super.onCreateOptionsMenu(menu)
-         menuInflater?.inflate(R.menu.settings, menu)
+        super.onCreateOptionsMenu(menu)
+        menuInflater?.inflate(R.menu.settings, menu)
         return true
     }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.menu_bill) {
             showBill()
-        }else if (item?.itemId == android.R.id.home) {
+        } else if (item?.itemId == android.R.id.home) {
             // se ha pulsado la flecha de back
             finish()
             return true
@@ -87,16 +88,13 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
         startActivity(DishListActivity.intent(context,
                 MainActivity.menu as MutableList<Dish>,
                 tablePosition))
-
     }
 
 
     private fun showBill() {
 
         val total = table.calculateBill()
-
         var message = getString(R.string.message_bill, total)
-
 
         when (total) {
             0f -> message = getString(R.string.message_bill_empty)
@@ -116,7 +114,6 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
         PREVIOUS_ACTIITY = PREV_ACT.TABLE_DETAIL
         val intent = DishDetailActivity.intent(this, dish, tablePosition)
         startActivity(intent)
-
 
     }
 
