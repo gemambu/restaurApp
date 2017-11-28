@@ -12,7 +12,6 @@ import com.gmb.restaurapp.adapter.DishRecyclerViewAdapter
 import com.gmb.restaurapp.common.PREVIOUS_ACTIITY
 import com.gmb.restaurapp.common.PREV_ACT
 import com.gmb.restaurapp.fragment.DishListFragment
-import com.gmb.restaurapp.fragment.OnSaveButtonPressedListener
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Tables
 import kotlinx.coroutines.experimental.android.UI
@@ -78,9 +77,7 @@ class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClic
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == android.R.id.home) {
             // se ha pulsado la flecha de back
-            //finish()
-
-
+            finish()
             return true
         }
         return super.onOptionsItemSelected(item)

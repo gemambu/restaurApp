@@ -13,7 +13,6 @@ import com.gmb.restaurapp.activity.MainActivity.Companion.EXTRA_TABLE_NUMBER
 import com.gmb.restaurapp.adapter.DishRecyclerViewAdapter
 import com.gmb.restaurapp.common.PREVIOUS_ACTIITY
 import com.gmb.restaurapp.common.PREV_ACT
-import com.gmb.restaurapp.fragment.DishDetailFragment
 import com.gmb.restaurapp.fragment.DishListFragment
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Table
@@ -63,14 +62,17 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
          menuInflater?.inflate(R.menu.settings, menu)
         return true
     }
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == R.id.menu_bill) {
             showBill()
+        }else if (item?.itemId == android.R.id.home) {
+            // se ha pulsado la flecha de back
+            finish()
+            return true
         }
-
-        return true
+        return super.onOptionsItemSelected(item)
     }
+
 
     private fun showDishes() {
 
@@ -111,16 +113,11 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
 
     override fun onDishClicked(position: Int, dish: Dish, tableNumber: Int, view: View) {
 
-        PREVIOUS_ACTIITY = PREV_ACT.DETAIL
+        PREVIOUS_ACTIITY = PREV_ACT.TABLE_DETAIL
         val intent = DishDetailActivity.intent(this, dish, tablePosition)
         startActivity(intent)
 
 
-//        val fragment = DishDetailFragment.newInstance(dish, tablePosition)
-//        fragmentManager.beginTransaction()
-//                .replace(R.id.dish_list_fragment, fragment)
-//                .addToBackStack(null)
-//                .commit()
     }
 
 

@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
 
     private lateinit var viewSwitcher: ViewSwitcher
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

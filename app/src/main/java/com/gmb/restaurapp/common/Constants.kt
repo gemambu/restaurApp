@@ -7,11 +7,11 @@ enum class VIEW_MAIN(val index: Int){
     SHOW_TABLES(1)
 }
 enum class PREV_ACT{
-    DETAIL,
+    TABLE_DETAIL,
     MENU
 }
 
-var PREVIOUS_ACTIITY: PREV_ACT = PREV_ACT.DETAIL
+var PREVIOUS_ACTIITY: PREV_ACT = PREV_ACT.TABLE_DETAIL
 
 val ALLERGENS: Map<String, Int> = mapOf(
         "a_1" to R.drawable.a_1,

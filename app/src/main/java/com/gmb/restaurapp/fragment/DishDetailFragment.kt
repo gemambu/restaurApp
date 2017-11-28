@@ -26,7 +26,7 @@ class DishDetailFragment : Fragment() {
         val ARG_DISH_LIST = "ARG_DISH_LIST"
         val EXTRA_TABLE_POSITION = "EXTRA_TABLE_POSITION"
 
-        var onSaveButtonPressed: OnSaveButtonPressedListener? = null
+        var dishDetailListener: DetailDishListener? = null
 
         fun newInstance(dish: Dish, tableNumber: Int): DishDetailFragment {
             val arguments = Bundle()
@@ -93,7 +93,7 @@ class DishDetailFragment : Fragment() {
     }
 
     private fun cancelAdd() {
-        activity.getFragmentManager().beginTransaction().remove(this).commit();
+        dishDetailListener?.onCancelPressed(root.rootView)
     }
 
     private fun saveDish() {
@@ -107,14 +107,15 @@ class DishDetailFragment : Fragment() {
 
                 message = getString(R.string.message_dish_added, table.number)
 
-                onSaveButtonPressed?.onSavePressed(root.rootView)
 
             }
-            PREV_ACT.DETAIL -> {
+            PREV_ACT.TABLE_DETAIL -> {
                 dish.updateVariant(variant.text.toString())
                 message = getString(R.string.message_dish_updated, table.number)
             }
         }
+
+        dishDetailListener?.onSavePressed(root.rootView)
 
     /*    Snackbar.make(root.findViewById(R.id.dish_detail_layout),
                 message,
@@ -138,8 +139,8 @@ class DishDetailFragment : Fragment() {
     private fun commonOnAttach(context: Context?) {
         // Aquí nos llaman cuando el fragment "se engancha" a la actividad, y por tanto ya pertence a ella
         // Lo que vamos a hacer es quedarnos con la referencia a esa actividad para cuando tengamos que avisarle de "cosas"
-        if (context is OnSaveButtonPressedListener) {
-            onSaveButtonPressed = context
+        if (context is DetailDishListener) {
+            dishDetailListener = context
         }
     }
 
@@ -148,7 +149,7 @@ class DishDetailFragment : Fragment() {
 
         // Si la actividad se "desengancha" de este fragment ya no tiene sentido guardar una referencia a ella, ya no le vamos
         // a avisar de nada, lo ponemos a null
-        onSaveButtonPressed = null
+        dishDetailListener = null
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -160,6 +161,7 @@ class DishDetailFragment : Fragment() {
     }
 }
 
-interface OnSaveButtonPressedListener {
+interface DetailDishListener {
     fun onSavePressed(view: View)
+    fun onCancelPressed(view: View)
 }
