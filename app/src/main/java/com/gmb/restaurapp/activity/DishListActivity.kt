@@ -59,13 +59,11 @@ class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClic
 
         }
 
-
         supportActionBar?.title = getString(R.string.table_menu_title,Tables[tablePosition].number)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onDishClicked(position: Int, dish: Dish, tableNumber: Int, view: View) {
-
         PREVIOUS_ACTIITY = PREV_ACT.MENU
         val intentDetail = DishDetailActivity.intent(this, dish, tablePosition)
         startActivityForResult(intentDetail, 1)
@@ -76,7 +74,6 @@ class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClic
             finish()
         }
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item?.itemId == android.R.id.home) {

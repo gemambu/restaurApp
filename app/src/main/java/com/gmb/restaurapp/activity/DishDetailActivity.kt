@@ -71,15 +71,17 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
     }
 
     override fun onSavePressed(view: View) {
-
         val intent = Intent()
         intent.putExtra("result", 0)
-        setResult(RESULT_OK, intent)
-        finish()
+        finalizeActivity(RESULT_OK, intent)
     }
 
     override fun onCancelPressed(view: View) {
-        setResult(Activity.RESULT_CANCELED, Intent())
+        finalizeActivity(Activity.RESULT_CANCELED, Intent())
+    }
+
+    private fun finalizeActivity(result: Int, intent: Intent){
+        setResult(result, intent)
         finish()
     }
 }

@@ -110,7 +110,7 @@ class DishDetailFragment : Fragment() {
 
             }
             PREV_ACT.TABLE_DETAIL -> {
-                dish.updateVariant(variant.text.toString())
+                dish.variant = variant.text.toString()
                 message = getString(R.string.message_dish_updated, table.number)
             }
         }
