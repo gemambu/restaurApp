@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
+import android.util.TypedValue
 import android.widget.ViewSwitcher
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.common.VIEW_MAIN
@@ -17,10 +18,11 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.coroutines.experimental.bg
 import org.json.JSONObject
+import java.io.File
 import java.net.URL
 import java.util.*
 
-class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListener{
+class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListener {
 
     companion object {
         var menu: List<Dish>? = null
@@ -62,7 +64,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
                 .findFragmentById(R.id.fragmentContainer)
 
 
-        if(currentFragment == null)
+        if (currentFragment == null)
             fragmentManager
                     .beginTransaction()
                     .add(R.id.fragmentContainer, TableListFragment())
@@ -71,14 +73,14 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
 
     private fun updateMenu(context: Context): List<Dish>? {
 
-        async(UI){
+        async(UI) {
 
             val newMenu: Deferred<List<Dish>?> = bg {
                 downloadMenu()
             }
 
             val downloadedMenu = newMenu.await()
-            if (downloadedMenu != null){
+            if (downloadedMenu != null) {
                 // Menú descargado correctamente
                 menu = downloadedMenu
 
@@ -89,16 +91,28 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
                 AlertDialog.Builder(context)
                         .setTitle(getString(R.string.error_downloading_menu))
                         .setMessage(getString(R.string.error_menu_message))
-                        .setPositiveButton(getString(R.string.retry_download),  { dialog, _ ->
+                        .setPositiveButton(getString(R.string.retry_download), { dialog, _ ->
                             dialog.dismiss()
                             updateMenu(context)
                         })
-                        .setNegativeButton(getString(R.string.cancel_download), { _, _ ->  finish()})
+                        .setNegativeButton(getString(R.string.cancel_download), { dialog, _ ->
+                            loadOfflineMenu()
+                            dialog.dismiss()
+                        })
                         .show()
             }
         }
 
         return menu
+    }
+
+    private fun loadOfflineMenu() {
+
+        val jsonString = Scanner(resources.openRawResource(R.raw.offline_menu)).useDelimiter("\\A").next()
+
+        menu = convertJson(jsonString)
+
+        showTableList()
     }
 
     private fun downloadMenu(): List<Dish>? {
@@ -108,44 +122,48 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
             val url = URL("http://www.mocky.io/v2/5a193a96300000f71c63f49e")
             val jsonString = Scanner(url.openStream(), "UTF-8").useDelimiter("\\A").next()
 
+            return convertJson(jsonString)
 
-            val jsonRoot = JSONObject(jsonString.toString())
-            val dishesList = jsonRoot.getJSONArray("dishes")
-
-            val menuList = mutableListOf<Dish>()
-
-            for(dishObj in 0 until dishesList.length()) {
-
-                val dish = dishesList.getJSONObject(dishObj)
-
-                val id = dish.getInt("id")
-                val name = dish.getString("name")
-                val description = dish.getString("description")
-                val price = dish.getDouble("price").toFloat()
-                val photo = dish.getString("photo")
-                val allergensJson = dish.getJSONArray("allergens")
-                val allergenList = mutableListOf<Allergen>()
-
-                if (allergensJson != null && allergensJson.length() > 0){
-                    for(allergenObj in 0 until allergensJson.length()){
-                        val allergen = allergensJson.getJSONObject(allergenObj)
-                        val id = allergen.getInt("id")
-                        val name = allergen.getString("name")
-                        val icon = allergen.getString("icon")
-                        allergenList.add(Allergen(id, name, icon))
-                    }
-                }
-
-                menuList.add(Dish(id, name, description, price, photo, allergenList, null))
-            }
-
-            return menuList
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
 
         return null
 
+    }
+
+    private fun convertJson(jsonString: String): List<Dish> {
+        val jsonRoot = JSONObject(jsonString.toString())
+        val dishesList = jsonRoot.getJSONArray("dishes")
+
+        val menuList = mutableListOf<Dish>()
+
+        for (dishObj in 0 until dishesList.length()) {
+
+            val dish = dishesList.getJSONObject(dishObj)
+
+            val id = dish.getInt("id")
+            val name = dish.getString("name")
+            val description = dish.getString("description")
+            val price = dish.getDouble("price").toFloat()
+            val photo = dish.getString("photo")
+            val allergensJson = dish.getJSONArray("allergens")
+            val allergenList = mutableListOf<Allergen>()
+
+            if (allergensJson != null && allergensJson.length() > 0) {
+                for (allergenObj in 0 until allergensJson.length()) {
+                    val allergen = allergensJson.getJSONObject(allergenObj)
+                    val id = allergen.getInt("id")
+                    val name = allergen.getString("name")
+                    val icon = allergen.getString("icon")
+                    allergenList.add(Allergen(id, name, icon))
+                }
+            }
+
+            menuList.add(Dish(id, name, description, price, photo, allergenList, null))
+        }
+
+        return menuList
     }
 
     override fun onTableSelected(position: Int) {

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.MenuItem
@@ -117,12 +118,10 @@ class DishDetailFragment : Fragment() {
 
         dishDetailListener?.onSavePressed(root.rootView)
 
-    /*    Snackbar.make(root.findViewById(R.id.dish_detail_layout),
-                message,
-                Snackbar.LENGTH_LONG)
-*/
-
-        Toast.makeText(root.context, message, Toast.LENGTH_LONG).show()
+        Snackbar.make(getActivity()
+                .findViewById(android.R.id.content),
+                message, Snackbar.LENGTH_LONG)
+                .show();
 
     }
 

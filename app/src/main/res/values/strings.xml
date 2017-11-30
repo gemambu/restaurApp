@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">restaurApp</string>
     <string name="retry_download">Intentar descargar de nuevo</string>
-    <string name="cancel_download">Cancelar la descarga</string>
+    <string name="cancel_download">Cancelar la descarga, utilizar datos offline</string>
     <string name="show_tables">Mostrar mesas</string>
     <string name="detail_table_number">Mesa %d</string>
     <string name="calculate_bill_button">Calcular cuenta</string>
