@@ -8,10 +8,15 @@ import org.junit.Test
 
 class DishModelUnitTest {
 
+    lateinit var dish: Dish
+
+    @Before
+    fun setup() {
+        dish = Dish(null, "plato 1", "mi desc", 22.22f, "miphoto", null, null)
+    }
 
     @Test
     fun createDish_isCorrect() {
-        var dish = Dish(null, "plato 1", "mi desc", 22.22f, "miphoto", null, null)
         Assert.assertNull(dish.id)
         Assert.assertNull(dish.allergens)
         Assert.assertNull(dish.variant)
@@ -23,7 +28,6 @@ class DishModelUnitTest {
 
     @Test
     fun updateVariant_isCorrect() {
-        var dish = Dish(null, "plato 1", "mi desc", 22.22f, "miphoto", null, null)
         Assert.assertNull(dish.variant)
         dish.updateVariant("new variant")
         Assert.assertEquals("new variant", dish.variant)
@@ -31,7 +35,6 @@ class DishModelUnitTest {
 
     @Test
     fun updateId_isCorrect() {
-        var dish = Dish(null, "plato 1", "mi desc", 22.22f, "miphoto", null, null)
         Assert.assertNull(dish.id)
         dish.updateId(2)
         Assert.assertEquals(2, dish.id)
@@ -39,7 +42,6 @@ class DishModelUnitTest {
 
     @Test
     fun copyDish_isCorrect() {
-        var dish = Dish(null, "plato 1", "mi desc", 22.22f, "miphoto", null, null)
         var dishCopy = dish.copy()
 
         Assert.assertEquals(dish.id, dishCopy.id)
