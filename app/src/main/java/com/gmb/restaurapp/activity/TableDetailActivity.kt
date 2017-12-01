@@ -40,7 +40,6 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
 
         context = baseContext
 
-        // findViewById<View>(R.id.calculate_bill_btn).setOnClickListener { showBill() }
         show_menu_btn.setOnClickListener { _ -> showMenu() }
 
         val intent = intent

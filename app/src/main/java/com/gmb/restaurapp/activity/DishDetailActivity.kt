@@ -16,7 +16,8 @@ import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Tables
 import java.io.Serializable
 import android.app.Activity
-
+import android.support.design.widget.Snackbar
+import android.view.Menu
 
 
 class DishDetailActivity : AppCompatActivity(), DetailDishListener {
@@ -66,9 +67,39 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
             // se ha pulsado la flecha de back
             finish()
             return true
+        } else if (item?.itemId == R.id.delete_dish) {
+            removeDish()
+            return true
         }
+
         return super.onOptionsItemSelected(item)
     }
+
+    private fun removeDish() {
+        val table = Tables[tablePosition]
+        table.removeDish(dish?.id ?: 0)
+
+        Snackbar.make(findViewById(android.R.id.content),
+                getString(R.string.message_dish_removed), Snackbar.LENGTH_LONG)
+                .show();
+
+        val intent = Intent()
+        intent.putExtra("result", 0)
+        finalizeActivity(RESULT_OK, intent)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
+        if (dish.id != null){
+            super.onCreateOptionsMenu(menu)
+            menuInflater?.inflate(R.menu.delete_dish, menu)
+            return true
+        }
+
+        return false
+
+    }
+
 
     override fun onSavePressed(view: View) {
         val intent = Intent()

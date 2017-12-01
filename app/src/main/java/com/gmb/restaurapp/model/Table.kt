@@ -17,6 +17,31 @@ class Table(val number: Int,
         dishes?.add(dish)
     }
 
+    fun updateDish(dishId: Int, newVariant: String?){
+        dishes?.forEach {
+            if (dishId == it.id){
+                it.updateVariant(newVariant)
+            }
+        }
+    }
+
+    fun removeDish(dishId: Int){
+        dishes?.forEach {
+            if (dishId == it.id){
+                dishes?.remove(it)
+            }
+        }
+    }
+
+    fun getNextId() : Int{
+        var lastIndex = 1
+        dishes?.forEach {
+            if (it.id != null && lastIndex < it.id!!) lastIndex++
+        }
+
+        return lastIndex
+    }
+
     fun calculateBill() : Float {
 
         var total = 0f

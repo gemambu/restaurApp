@@ -3,7 +3,7 @@ package com.gmb.restaurapp.model
 import java.io.Serializable
 
 
-open class Dish(val id: Int,
+open class Dish(var id: Int?,
                 val name: String,
                 val description: String,
                 val price: Float,
@@ -12,11 +12,15 @@ open class Dish(val id: Int,
                 var variant: String?
 ) : Serializable {
 
-    fun updateVariant(newVariant: String){
+    fun updateVariant(newVariant: String?){
         this.variant = newVariant
     }
 
-    fun copy() = Dish(id, name, description, price, photo, allergens, variant)
+    fun updateId(newId: Int) {
+        this.id = newId
+    }
+
+    fun copy() = Dish(null, name, description, price, photo, allergens, variant)
 
 
 

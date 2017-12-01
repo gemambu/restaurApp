@@ -104,14 +104,15 @@ class DishDetailFragment : Fragment() {
             PREV_ACT.MENU -> {
                 val dishVariant = dish.copy()
                 dishVariant.updateVariant(variant.text.toString())
+                dishVariant.updateId(table.getNextId())
                 table.addDish(dishVariant)
-
                 message = getString(R.string.message_dish_added, table.number)
 
 
             }
             PREV_ACT.TABLE_DETAIL -> {
-                dish.variant = variant.text.toString()
+                //dish.variant = variant.text.toString()
+                table.updateDish(dish.id!!, variant.text.toString())
                 message = getString(R.string.message_dish_updated, table.number)
             }
         }

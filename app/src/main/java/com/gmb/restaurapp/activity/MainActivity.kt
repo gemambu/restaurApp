@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
         try {
             Thread.sleep(2000)
 
-            val url = URL("http://www.mocky.io/v2/5a193a96300000f71c63f49e")
+            val url = URL("http://www.mocky.io/v2/5a2062b2310000b739c0b28b")
             val jsonString = Scanner(url.openStream(), "UTF-8").useDelimiter("\\A").next()
 
             return convertJson(jsonString)
@@ -142,7 +142,6 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
 
             val dish = dishesList.getJSONObject(dishObj)
 
-            val id = dish.getInt("id")
             val name = dish.getString("name")
             val description = dish.getString("description")
             val price = dish.getDouble("price").toFloat()
@@ -160,7 +159,7 @@ class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListe
                 }
             }
 
-            menuList.add(Dish(id, name, description, price, photo, allergenList, null))
+            menuList.add(Dish(null, name, description, price, photo, allergenList, null))
         }
 
         return menuList

@@ -22,4 +22,6 @@
     <string name="title_main">RestaurApp!</string>
     <string name="decription_image_allergen">Allergen image</string>
     <string name="table_menu_title">Menú para mesa: %d</string>
+    <string name="delete_dish">Borrar plato</string>
+    <string name="message_dish_removed">Plato borrado de la mesa</string>
 </resources>

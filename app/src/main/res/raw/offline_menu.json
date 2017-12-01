@@ -1,6 +1,5 @@
 {  "dishes": [
     {
-      "id": 1,
       "name": "Noodles con Verdura",
       "description": "Noodles de arroz integral con calabacín, pimiento rojo y verde. Salteados con salsa de soja",
       "allergens": [
@@ -14,7 +13,6 @@
       "photo": "d_1"
     },
     {
-      "id": 2,
       "name": "Dim Sum variado",
       "description": "Pequeña muestra de dim sum: 2 piezas de carne de cerdo, 2 piezas de Langostinos y 2 piezas de pollo con trufa",
       "allergens": [
@@ -33,7 +31,6 @@
       "photo": "d_2"
     },
     {
-      "id": 3,
       "name": "Sopa Miso",
       "description": "Sopa de miso con fideos y champiñones. Incluye puerro, cebolla, cacahuetes tostados y tofu. ",
       "allergens": [
@@ -52,17 +49,15 @@
       "photo": "d_3"
     },
     {
-      "id": 4,
       "name": "Ensalada china",
       "description": "Ensalada china de lechuga, jamón, piña y la salsa super secreta sin glutamato",
       "allergens": [
 
       ],
-      "price": 3.9,
+      "price": 7.59,
       "photo": "d_4"
     },
     {
-      "id": 5,
       "name": "Helado flameado",
       "description": "Helado flameado. Sabores a elegir: fresa, chocolate, limón o nata",
       "allergens": [
