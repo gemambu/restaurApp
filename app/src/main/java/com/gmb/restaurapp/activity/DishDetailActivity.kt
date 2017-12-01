@@ -79,13 +79,14 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
         val table = Tables[tablePosition]
         table.removeDish(dish.id ?: 0)
 
-        Snackbar.make(findViewById(android.R.id.content),
-                getString(R.string.message_dish_removed), Snackbar.LENGTH_LONG)
-                .show();
 
         val intent = Intent()
         intent.putExtra("result", 0)
         finalizeActivity(RESULT_OK, intent)
+
+        Snackbar.make(findViewById(android.R.id.content),
+                getString(R.string.message_dish_removed), Snackbar.LENGTH_LONG)
+                .show();
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
