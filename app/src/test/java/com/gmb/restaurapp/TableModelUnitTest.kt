@@ -31,7 +31,7 @@ class TableModelUnitTest {
                 null,
                 null)
 
-        val dishes: MutableList<Dish> = mutableListOf(dish, dish2)
+        val dishes: MutableMap<Int, Dish> = mutableMapOf(1 to dish, 2 to dish2)
         table = Table(1, dishes)
 
         emptyTable = Table(2, null)

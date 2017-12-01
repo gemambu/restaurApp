@@ -77,7 +77,7 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
 
     private fun removeDish() {
         val table = Tables[tablePosition]
-        table.removeDish(dish?.id ?: 0)
+        table.removeDish(dish.id ?: 0)
 
         Snackbar.make(findViewById(android.R.id.content),
                 getString(R.string.message_dish_removed), Snackbar.LENGTH_LONG)

@@ -45,7 +45,7 @@
             android:contentDescription="@string/dish_image_description"
             android:maxHeight="90dp"
             android:maxWidth="190dp"
-            android:src="@drawable/dim_sum" />
+            android:src="@drawable/d_1" />
 
         <include layout="@layout/allergens_list"
             android:layout_width="wrap_content"

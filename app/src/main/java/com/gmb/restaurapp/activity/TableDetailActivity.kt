@@ -76,7 +76,7 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
 
     private fun showDishes() {
 
-        val fragment = DishListFragment.newInstance(table.dishes, tablePosition)
+        val fragment = DishListFragment.newInstance(table.getValues(), tablePosition)
         fragmentManager
                 .beginTransaction()
                 .replace(R.id.dish_list_fragment, fragment)

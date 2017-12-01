@@ -4,50 +4,49 @@ import java.io.Serializable
 
 
 class Table(val number: Int,
-            var dishes: MutableList<Dish>?) : Serializable {
+            var dishes: MutableMap<Int, Dish>?) : Serializable {
+
+    companion object {
+        var index: Int = 0
+    }
 
     init {
-        dishes = mutableListOf()
+        dishes = mutableMapOf()
+    }
+
+    fun getValues() : MutableList<Dish> {
+        var listDishes = mutableListOf<Dish>()
+
+        if(dishes != null && !dishes!!.isEmpty()){
+            listDishes.addAll(dishes!!.values)
+        }
+
+        return listDishes
     }
 
     val count
         get() = dishes?.size ?: 0
 
     fun addDish(dish: Dish) {
-        dishes?.add(dish)
+        dishes?.put(dish.id ?: 0, dish)
     }
 
-    fun updateDish(dishId: Int, newVariant: String?){
-        dishes?.forEach {
-            if (dishId == it.id){
-                it.updateVariant(newVariant)
-            }
-        }
-    }
 
-    fun removeDish(dishId: Int){
-        dishes?.forEach {
-            if (dishId == it.id){
-                dishes?.remove(it)
-            }
-        }
-    }
+    fun updateDish(dishId: Int, newVariant: String?) = dishes?.get(dishId)?.updateVariant(newVariant)
 
-    fun getNextId() : Int{
-        var lastIndex = 1
-        dishes?.forEach {
-            if (it.id != null && lastIndex < it.id!!) lastIndex++
-        }
 
-        return lastIndex
-    }
+    fun removeDish(dishId: Int) = dishes?.remove(dishId)
+
+
+    fun getNextId() : Int = index++
 
     fun calculateBill() : Float {
 
         var total = 0f
 
         if (dishes != null && dishes!!.size > 0){
-            dishes?.map { total += it.price }
+            dishes?.forEach { (_, value) ->
+                total += value.price }
         }
 
         return total
