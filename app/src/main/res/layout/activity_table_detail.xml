@@ -20,7 +20,7 @@
         android:id="@+id/show_menu_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:minWidth="90dp"
+        android:minWidth="@dimen/min_width_floating_button"
         android:layout_gravity="bottom|center"
         android:layout_margin="@dimen/default_margin"
         android:src="@drawable/menu"/>

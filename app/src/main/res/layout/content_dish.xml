@@ -28,7 +28,7 @@
             android:layout_alignBottom="@+id/dish"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:minWidth="50dp"
+            android:minWidth="@dimen/min_width_price"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
             tools:text="12.50 €" />
 
@@ -43,11 +43,13 @@
             android:layout_below="@id/dish"
             android:adjustViewBounds="true"
             android:contentDescription="@string/dish_image_description"
-            android:maxHeight="90dp"
-            android:maxWidth="190dp"
+            android:maxHeight="@dimen/max_height_photo"
+            android:maxWidth="@dimen/max_width_photo"
             android:src="@drawable/d_1" />
 
         <include layout="@layout/allergens_list"
+            android:layout_marginLeft="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dish"

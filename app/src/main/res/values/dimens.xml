@@ -1,4 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="default_margin">16dp</dimen>
+    <dimen name="min_width_floating_button">90dp</dimen>
+    <dimen name="layout_width_main">110dp</dimen>
+    <dimen name="margin_24dp">24dp</dimen>
+    <dimen name="max_allergen">20dp</dimen>
+    <dimen name="min_margin">8dp</dimen>
+    <dimen name="min_width_price">50dp</dimen>
+    <dimen name="max_height_photo">90dp</dimen>
+    <dimen name="max_width_photo">190dp</dimen>
+    <dimen name="width_photo_detail">150dp</dimen>
+    <dimen name="height_photo_detail">150dp</dimen>
+    <dimen name="zero_margin">0dp</dimen>
+    <dimen name="extra_margin">48dp</dimen>
+    <dimen name="height_price_detail">35dp</dimen>
+    <dimen name="width_price_detail">150dp</dimen>
+    <dimen name="width_text_detail">315dp</dimen>
+    <dimen name="height_text_detail">110dp</dimen>
 </resources>

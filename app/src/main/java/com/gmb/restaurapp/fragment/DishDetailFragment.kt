@@ -4,15 +4,15 @@ import android.app.Activity
 import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.Snackbar
-import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import com.gmb.restaurapp.R
-import com.gmb.restaurapp.common.MENU
 import com.gmb.restaurapp.common.TABLE
 import com.gmb.restaurapp.common.getAllergenInfo
 import com.gmb.restaurapp.common.getDishPhoto
@@ -97,10 +97,6 @@ class DishDetailFragment : Fragment() {
             root.findViewById<Button>(R.id.cancel_dish_btn).setOnClickListener {
                 dishDetailListener?.onCancelPressed(root.rootView)
             }
-
-            val supportActionBar = (activity as? AppCompatActivity)?.supportActionBar
-            supportActionBar?.title = dish.name
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         }
 

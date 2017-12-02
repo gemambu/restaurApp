@@ -49,9 +49,6 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        supportActionBar?.title = getString(R.string.detail_table_number, Tables[tablePosition].number)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         context = baseContext
 
         dish = intent.getSerializableExtra(EXTRA_DISH) as Dish
@@ -63,44 +60,22 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
                 .add(R.id.dish_detail_fragment, fragment)
                 .addToBackStack(null)
                 .commit()
+
+        supportActionBar?.title = dish.name
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == android.R.id.home) {
-            // se ha pulsado la flecha de back
-            finish()
-            return true
-        } else if (item?.itemId == R.id.delete_dish) {
-            removeDish()
-            return true
-        }
 
-        return super.onOptionsItemSelected(item)
-    }
-
-    private fun removeDish() {
-
-        table.removeDish(dish.id ?: 0)
-
-
-        val intent = Intent()
-        intent.putExtra("result", 0)
-        finalizeActivity(RESULT_OK, intent)
-
-        Snackbar.make(findViewById(android.R.id.content),
-                getString(R.string.message_dish_removed), Snackbar.LENGTH_LONG)
-                .show()
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
         if (dish.id != null) {
             super.onCreateOptionsMenu(menu)
             menuInflater?.inflate(R.menu.delete_dish, menu)
-            return true
+
         }
 
-        return false
+        return true
 
     }
 
@@ -142,5 +117,37 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
     private fun finalizeActivity(result: Int, intent: Intent) {
         setResult(result, intent)
         finish()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == android.R.id.home) {
+            // se ha pulsado la flecha de back
+            finalizeActivity(Activity.RESULT_CANCELED, Intent())
+            return true
+        } else if (item?.itemId == R.id.delete_dish) {
+            removeDish()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun removeDish() {
+
+        table.removeDish(dish.id ?: 0)
+
+        val intent = Intent()
+        intent.putExtra("result", 0)
+        finalizeActivity(RESULT_OK, intent)
+
+        Snackbar.make(findViewById(android.R.id.content),
+                getString(R.string.message_dish_removed), Snackbar.LENGTH_LONG)
+                .show()
+    }
+
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finalizeActivity(Activity.RESULT_CANCELED, Intent())
     }
 }
