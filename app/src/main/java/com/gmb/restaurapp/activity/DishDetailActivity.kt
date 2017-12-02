@@ -8,8 +8,6 @@ import android.support.v7.widget.Toolbar
 import android.view.MenuItem
 import android.view.View
 import com.gmb.restaurapp.R
-import com.gmb.restaurapp.common.PREVIOUS_ACTIITY
-import com.gmb.restaurapp.common.PREV_ACT
 import com.gmb.restaurapp.fragment.DishDetailFragment
 import com.gmb.restaurapp.fragment.DetailDishListener
 import com.gmb.restaurapp.model.Dish
@@ -18,6 +16,9 @@ import java.io.Serializable
 import android.app.Activity
 import android.support.design.widget.Snackbar
 import android.view.Menu
+import com.gmb.restaurapp.common.MENU
+import com.gmb.restaurapp.common.TABLE
+import com.gmb.restaurapp.model.Table
 
 
 class DishDetailActivity : AppCompatActivity(), DetailDishListener {
@@ -37,7 +38,8 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
     }
 
     lateinit var dish: Dish
-    var tablePosition: Int = 0
+    lateinit var table: Table
+    private var tablePosition: Int = 0
     lateinit var context: Context
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +56,7 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
 
         dish = intent.getSerializableExtra(EXTRA_DISH) as Dish
         tablePosition = intent.getIntExtra(EXTRA_TABLE_POSITION, 0)
+        table = Tables[tablePosition]
 
         val fragment = DishDetailFragment.newInstance(dish, tablePosition)
         fragmentManager.beginTransaction()
@@ -76,7 +79,7 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
     }
 
     private fun removeDish() {
-        val table = Tables[tablePosition]
+
         table.removeDish(dish.id ?: 0)
 
 
@@ -86,12 +89,12 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
 
         Snackbar.make(findViewById(android.R.id.content),
                 getString(R.string.message_dish_removed), Snackbar.LENGTH_LONG)
-                .show();
+                .show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 
-        if (dish.id != null){
+        if (dish.id != null) {
             super.onCreateOptionsMenu(menu)
             menuInflater?.inflate(R.menu.delete_dish, menu)
             return true
@@ -102,17 +105,41 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
     }
 
 
-    override fun onSavePressed(view: View) {
-        val intent = Intent()
-        intent.putExtra("result", 0)
-        finalizeActivity(RESULT_OK, intent)
+    override fun onSavePressed(view: View, dish: Dish, variant: String) {
+
+        var message = ""
+
+        when (intent.action) {
+            MENU -> {
+                val dishVariant = dish.copy()
+                dishVariant.updateVariant(variant)
+                dishVariant.updateId(table.getNextId())
+                table.addDish(dishVariant)
+                message = getString(R.string.message_dish_added, table.number)
+
+
+            }
+            TABLE -> {
+                table.updateDish(dish.id!!, variant)
+                message = getString(R.string.message_dish_updated, table.number)
+            }
+        }
+
+        Snackbar.make(findViewById(android.R.id.content),
+                message, Snackbar.LENGTH_LONG)
+                .show()
+
+
+        val newIntent = Intent()
+        newIntent.putExtra("result", 0)
+        finalizeActivity(RESULT_OK, newIntent)
     }
 
     override fun onCancelPressed(view: View) {
         finalizeActivity(Activity.RESULT_CANCELED, Intent())
     }
 
-    private fun finalizeActivity(result: Int, intent: Intent){
+    private fun finalizeActivity(result: Int, intent: Intent) {
         setResult(result, intent)
         finish()
     }

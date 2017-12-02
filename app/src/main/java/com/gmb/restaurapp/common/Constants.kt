@@ -2,16 +2,10 @@ package com.gmb.restaurapp.common
 
 import com.gmb.restaurapp.R
 
-enum class VIEW_MAIN(val index: Int){
+enum class VIEW_MAIN(val index: Int) {
     LOADING(0),
     SHOW_TABLES(1)
 }
-enum class PREV_ACT{
-    TABLE_DETAIL,
-    MENU
-}
-
-var PREVIOUS_ACTIITY: PREV_ACT = PREV_ACT.TABLE_DETAIL
 
 val ALLERGENS: Map<String, Int> = mapOf(
         "a_1" to R.drawable.a_1,
@@ -27,3 +21,9 @@ val PICTURES: Map<String, Int> = mapOf(
         "d_4" to R.drawable.d_4,
         "d_5" to R.drawable.d_5
 )
+
+val TABLE = "TABLE"
+val MENU = "MENU"
+
+val RQ_MENU = 1
+val RQ_TABLE = 2

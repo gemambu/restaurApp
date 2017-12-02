@@ -9,8 +9,8 @@ import android.view.MenuItem
 import android.view.View
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.adapter.DishRecyclerViewAdapter
-import com.gmb.restaurapp.common.PREVIOUS_ACTIITY
-import com.gmb.restaurapp.common.PREV_ACT
+import com.gmb.restaurapp.common.MENU
+import com.gmb.restaurapp.common.RQ_MENU
 import com.gmb.restaurapp.fragment.DishListFragment
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Tables
@@ -19,7 +19,7 @@ import kotlinx.coroutines.experimental.async
 import java.io.Serializable
 
 
-class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClickListener {
+class DishListActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishClickListener {
 
     companion object {
         val EXTRA_DISH_LIST = "EXTRA_DISH_LIST"
@@ -47,8 +47,8 @@ class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClic
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
-        val listDishes =  intent.getSerializableExtra(EXTRA_DISH_LIST) as? MutableList<Dish>
-        tablePosition= intent.getIntExtra(EXTRA_POSITION, 0)
+        val listDishes = intent.getSerializableExtra(EXTRA_DISH_LIST) as? MutableList<Dish>
+        tablePosition = intent.getIntExtra(EXTRA_POSITION, 0)
 
         async(UI) {
             val fragment = DishListFragment.newInstance(listDishes, tablePosition)
@@ -59,18 +59,18 @@ class DishListActivity: AppCompatActivity(),  DishRecyclerViewAdapter.OnDishClic
 
         }
 
-        supportActionBar?.title = getString(R.string.table_menu_title,Tables[tablePosition].number)
+        supportActionBar?.title = getString(R.string.table_menu_title, Tables[tablePosition].number)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun onDishClicked(position: Int, dish: Dish, tableNumber: Int, view: View) {
-        PREVIOUS_ACTIITY = PREV_ACT.MENU
         val intentDetail = DishDetailActivity.intent(this, dish, tablePosition)
-        startActivityForResult(intentDetail, 1)
+        intentDetail.action = MENU
+        startActivityForResult(intentDetail, RQ_MENU)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent) {
-        if (requestCode == 1 && resultCode == RESULT_OK){
+        if (requestCode == RQ_MENU && resultCode == RESULT_OK) {
             finish()
         }
     }

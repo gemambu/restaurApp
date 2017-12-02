@@ -2,6 +2,7 @@ package com.gmb.restaurapp.activity
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -9,10 +10,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import com.gmb.restaurapp.R
-import com.gmb.restaurapp.activity.MainActivity.Companion.EXTRA_TABLE_NUMBER
+import com.gmb.restaurapp.activity.TableListActivity.Companion.EXTRA_TABLE_NUMBER
 import com.gmb.restaurapp.adapter.DishRecyclerViewAdapter
-import com.gmb.restaurapp.common.PREVIOUS_ACTIITY
-import com.gmb.restaurapp.common.PREV_ACT
+import com.gmb.restaurapp.common.*
 import com.gmb.restaurapp.fragment.DishListFragment
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Table
@@ -85,7 +85,7 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
 
     private fun showMenu() {
         startActivity(DishListActivity.intent(context,
-                MainActivity.menu as MutableList<Dish>,
+                TableListActivity.menu as MutableList<Dish>,
                 tablePosition))
     }
 
@@ -110,11 +110,9 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
 
     override fun onDishClicked(position: Int, dish: Dish, tableNumber: Int, view: View) {
 
-        PREVIOUS_ACTIITY = PREV_ACT.TABLE_DETAIL
-        val intent = DishDetailActivity.intent(this, dish, tablePosition)
-        startActivity(intent)
-
+        val intentDetail = DishDetailActivity.intent(this, dish, tablePosition)
+        intentDetail.action = TABLE
+        startActivity(intentDetail)
     }
-
 
 }

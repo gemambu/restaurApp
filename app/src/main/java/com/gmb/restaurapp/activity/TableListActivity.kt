@@ -22,7 +22,7 @@ import java.io.File
 import java.net.URL
 import java.util.*
 
-class MainActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListener {
+class TableListActivity : AppCompatActivity(), TableListFragment.OnTableSelectedListener {
 
     companion object {
         var menu: List<Dish>? = null

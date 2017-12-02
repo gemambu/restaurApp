@@ -12,8 +12,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.gmb.restaurapp.R
-import com.gmb.restaurapp.common.PREVIOUS_ACTIITY
-import com.gmb.restaurapp.common.PREV_ACT
+import com.gmb.restaurapp.common.MENU
+import com.gmb.restaurapp.common.TABLE
 import com.gmb.restaurapp.common.getAllergenInfo
 import com.gmb.restaurapp.common.getDishPhoto
 import com.gmb.restaurapp.model.Dish
@@ -80,8 +80,23 @@ class DishDetailFragment : Fragment() {
             description.text = dish.description
             variant.setText(dish.variant)
 
-            root.findViewById<Button>(R.id.add_dish_btn).setOnClickListener { saveDish() }
-            root.findViewById<Button>(R.id.cancel_dish_btn).setOnClickListener { cancelAdd() }
+
+            var buttonText = getString(R.string.add_dish_btn)
+
+            when (activity.intent.action) {
+                TABLE -> buttonText = getString(R.string.update_dish_btn)
+            }
+
+            root.findViewById<Button>(R.id.add_dish_btn).text = buttonText
+
+
+            root.findViewById<Button>(R.id.add_dish_btn).setOnClickListener {
+                dishDetailListener?.onSavePressed(root.rootView, dish, variant.text.toString())
+            }
+
+            root.findViewById<Button>(R.id.cancel_dish_btn).setOnClickListener {
+                dishDetailListener?.onCancelPressed(root.rootView)
+            }
 
             val supportActionBar = (activity as? AppCompatActivity)?.supportActionBar
             supportActionBar?.title = dish.name
@@ -90,39 +105,6 @@ class DishDetailFragment : Fragment() {
         }
 
         return root
-
-    }
-
-    private fun cancelAdd() {
-        dishDetailListener?.onCancelPressed(root.rootView)
-    }
-
-    private fun saveDish() {
-        var message = ""
-
-        when(PREVIOUS_ACTIITY){
-            PREV_ACT.MENU -> {
-                val dishVariant = dish.copy()
-                dishVariant.updateVariant(variant.text.toString())
-                dishVariant.updateId(table.getNextId())
-                table.addDish(dishVariant)
-                message = getString(R.string.message_dish_added, table.number)
-
-
-            }
-            PREV_ACT.TABLE_DETAIL -> {
-                //dish.variant = variant.text.toString()
-                table.updateDish(dish.id!!, variant.text.toString())
-                message = getString(R.string.message_dish_updated, table.number)
-            }
-        }
-
-        dishDetailListener?.onSavePressed(root.rootView)
-
-        Snackbar.make(getActivity()
-                .findViewById(android.R.id.content),
-                message, Snackbar.LENGTH_LONG)
-                .show();
 
     }
 
@@ -162,6 +144,6 @@ class DishDetailFragment : Fragment() {
 }
 
 interface DetailDishListener {
-    fun onSavePressed(view: View)
+    fun onSavePressed(view: View, dish: Dish, variant: String)
     fun onCancelPressed(view: View)
 }

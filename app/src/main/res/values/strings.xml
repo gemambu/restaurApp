@@ -8,6 +8,7 @@
     <string name="dish_image_description">Imagen del plato</string>
     <string name="show_dishes_list">Mostrar menu</string>
     <string name="add_dish_btn">Añadir plato</string>
+    <string name="update_dish_btn">Actualizar plato</string>
     <string name="cancel_add_btn">Cancelar</string>
     <string name="dish_photo">Foto del plato</string>
     <string name="dish_price">%.2f Euros</string>
@@ -15,7 +16,7 @@
     <string name="error_downloading_menu">Error</string>
     <string name="error_menu_message">No se ha podido descargar el menú</string>
     <string name="title_bill">Cuenta de la mesa %d</string>
-    <string name="message_bill">Total a pagar: %.2f euros</string>
+    <string name="message_bill">Total a pagar: %.2f Euros</string>
     <string name="message_bill_empty">No hay platos añadidos</string>
     <string name="message_dish_added">Añadiendo plato en la mesa: %d</string>
     <string name="message_dish_updated">Actualizando plato en la mesa: %d</string>
