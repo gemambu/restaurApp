@@ -15,7 +15,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/iv_allergen"
@@ -34,12 +34,7 @@
             android:layout_marginBottom="@dimen/min_margin"
             android:textSize="@dimen/allergen_text_size"
             tools:text="Allergen 1" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/iv_allergen2"
@@ -58,12 +53,6 @@
             android:layout_marginBottom="@dimen/min_margin"
             android:textSize="@dimen/allergen_text_size"
             tools:text="Allergen 2" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/iv_allergen3"
@@ -82,9 +71,7 @@
             android:layout_marginBottom="@dimen/min_margin"
             android:textSize="@dimen/allergen_text_size"
             tools:text="Allergen 3" />
-    </LinearLayout>
 
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
