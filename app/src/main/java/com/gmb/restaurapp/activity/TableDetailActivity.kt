@@ -2,7 +2,9 @@ package com.gmb.restaurapp.activity
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.view.Menu
@@ -67,6 +69,9 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
             // se ha pulsado la flecha de back
             finish()
             return true
+        } else if (item?.itemId == R.id.delete_all) {
+            removeAll()
+            return true
         }
         return super.onOptionsItemSelected(item)
     }
@@ -111,6 +116,21 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
         val intentDetail = DishDetailActivity.intent(this, dish, tablePosition)
         intentDetail.action = TABLE
         startActivity(intentDetail)
+    }
+
+    private fun removeAll() {
+
+        var message = getString(R.string.message_all_dish_removed_empty_table)
+
+        if (table.count > 0) {
+            message = getString(R.string.message_all_dish_removed)
+            table.removeAll()
+
+            showDishes()
+        }
+
+        Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_LONG)
+                .show()
     }
 
 }

@@ -145,7 +145,6 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
                 .show()
     }
 
-
     override fun onBackPressed() {
         super.onBackPressed()
         finalizeActivity(Activity.RESULT_CANCELED, Intent())

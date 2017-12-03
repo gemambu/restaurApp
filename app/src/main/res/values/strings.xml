@@ -24,4 +24,7 @@
     <string name="table_menu_title">Menú para mesa: %d</string>
     <string name="delete_dish">Borrar plato</string>
     <string name="message_dish_removed">Plato borrado de la mesa</string>
+    <string name="message_all_dish_removed">Todos los platos se han borrado de la mesa</string>
+    <string name="message_all_dish_removed_empty_table">La mesa no tiene platos para borrar</string>
+    <string name="delete_all">Vaciar mesa</string>
 </resources>

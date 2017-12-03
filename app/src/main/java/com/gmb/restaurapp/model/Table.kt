@@ -34,9 +34,9 @@ class Table(val number: Int,
 
     fun updateDish(dishId: Int, newVariant: String?) = dishes?.get(dishId)?.updateVariant(newVariant)
 
-
     fun removeDish(dishId: Int) = dishes?.remove(dishId)
 
+    fun removeAll() = dishes?.clear()
 
     fun getNextId() : Int = index++
 
