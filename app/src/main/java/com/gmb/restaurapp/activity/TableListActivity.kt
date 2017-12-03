@@ -7,12 +7,15 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.util.TypedValue
+import android.view.View
 import android.widget.ViewSwitcher
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.common.VIEW_MAIN
+import com.gmb.restaurapp.fragment.DishListFragment
 import com.gmb.restaurapp.fragment.TableListFragment
 import com.gmb.restaurapp.model.Allergen
 import com.gmb.restaurapp.model.Dish
+import com.gmb.restaurapp.model.Tables
 import kotlinx.coroutines.experimental.Deferred
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
@@ -64,11 +67,17 @@ class TableListActivity : AppCompatActivity(), TableListFragment.OnTableSelected
                 .findFragmentById(R.id.fragmentContainer)
 
 
-        if (currentFragment == null)
+        if (currentFragment == null) {
+            // Quizá pueda meter como setup el número de mesas
+            Tables.initTables(10)
+
+            val fragment = TableListFragment.newInstance()
             fragmentManager
                     .beginTransaction()
-                    .add(R.id.fragmentContainer, TableListFragment())
+                    .replace(R.id.fragmentContainer, fragment)
                     .commit()
+        }
+
     }
 
     private fun updateMenu(context: Context): List<Dish>? {
@@ -109,7 +118,6 @@ class TableListActivity : AppCompatActivity(), TableListFragment.OnTableSelected
     private fun loadOfflineMenu() {
 
         val jsonString = Scanner(resources.openRawResource(R.raw.offline_menu)).useDelimiter("\\A").next()
-
         menu = convertJson(jsonString)
 
         showTableList()

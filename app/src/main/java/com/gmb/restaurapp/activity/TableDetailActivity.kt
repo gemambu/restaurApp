@@ -34,7 +34,6 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_table_detail)
 
-
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -74,7 +73,7 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
     }
 
 
-    private fun showDishes() {
+    fun showDishes() {
 
         val fragment = DishListFragment.newInstance(table.getValues(), tablePosition)
         fragmentManager

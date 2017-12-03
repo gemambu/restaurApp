@@ -8,8 +8,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.gmb.restaurapp.fragment.DishListFragment"
-        >
+        tools:context="com.gmb.restaurapp.fragment.DishListFragment">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view_dish"

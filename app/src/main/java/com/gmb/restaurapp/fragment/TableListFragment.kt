@@ -21,13 +21,17 @@ class TableListFragment : Fragment() {
     private lateinit var root: View
     private var onTableSelectedListener: OnTableSelectedListener? = null
 
+    companion object {
+        fun newInstance(): TableListFragment {
+            val fragment = TableListFragment()
+            return fragment
+        }
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         root = inflater.inflate(R.layout.fragment_table_list, container, false)
         list = root.findViewById(R.id.table_list_fragment)
-
-        // Quizá pueda meter como setup el número de mesas
-        Tables.initTables(10)
 
 
         val adapter = ArrayAdapter<Table>(activity, android.R.layout.simple_list_item_1, Tables.toArray())

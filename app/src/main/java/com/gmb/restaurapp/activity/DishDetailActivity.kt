@@ -57,7 +57,7 @@ class DishDetailActivity : AppCompatActivity(), DetailDishListener {
 
         val fragment = DishDetailFragment.newInstance(dish, tablePosition)
         fragmentManager.beginTransaction()
-                .add(R.id.dish_detail_fragment, fragment)
+                .replace(R.id.dish_detail_fragment, fragment)
                 .addToBackStack(null)
                 .commit()
 

@@ -16,7 +16,13 @@ La aplicación:
 
 ## Información sobre el proyecto
 
+Modelo de datos:
+Gestión de activities y fragments:
+Constantes y utilidades
+
 ## Extras
+
+Si no hay conexión a internet, se puede utilizar un json incluido en la aplicación, con los mismos datos que el json alojado en el Mocky (http://www.mocky.io/v2/5a2062b2310000b739c0b28b)
 
 <div>Iconos diseñados por <a href="http://www.freepik.com" title="Freepik">Freepik</a> desde <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.com</a> con licencia <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 

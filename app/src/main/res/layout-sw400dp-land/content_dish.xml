@@ -4,53 +4,58 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="8dp">
+    android:layout_margin="@dimen/default_margin"
+    app:cardCornerRadius="@dimen/min_margin"
+    app:cardElevation="@dimen/min_margin">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="@dimen/min_margin">
 
         <TextView
             android:id="@+id/dish"
-            android:layout_width="202dp"
-            android:layout_height="18dp"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/zero_margin"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/margin_32dp"
+            android:layout_marginLeft="@dimen/margin_32dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
+            android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/dish_image"
             app:layout_constraintTop_toTopOf="@+id/dish_image"
             tools:text="Plato 1" />
 
         <TextView
             android:id="@+id/dish_price"
-            android:layout_width="wrap_content"
+            android:layout_width="@dimen/zero_margin"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="@dimen/margin_32dp"
+            android:layout_marginLeft="@dimen/margin_32dp"
+            android:layout_marginTop="@dimen/margin_24dp"
             android:minWidth="@dimen/min_width_price"
             android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
+            android:textSize="@dimen/text_size_tablet"
             app:layout_constraintStart_toEndOf="@+id/dish_image"
             app:layout_constraintTop_toBottomOf="@+id/dish"
-            tools:text="12.50 €" />
+            tools:text="12.50 Euros" />
 
 
         <ImageView
             android:id="@+id/dish_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/width_photo_content_dish"
+            android:layout_height="@dimen/zero_margin"
             android:layout_alignBottom="@+id/dish_allergens_information"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_below="@id/dish"
-            android:layout_marginBottom="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="@dimen/default_margin"
+            android:layout_marginStart="@dimen/margin_24dp"
+            android:layout_marginLeft="@dimen/margin_24dp"
+            android:layout_marginTop="@dimen/default_margin"
             android:adjustViewBounds="true"
             android:contentDescription="@string/dish_image_description"
             android:maxHeight="@dimen/max_height_photo"
@@ -63,13 +68,13 @@
         <include
             android:id="@+id/dish_allergens_information"
             layout="@layout/allergens_list"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/dish"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="@dimen/min_margin"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:layout_marginStart="@dimen/default_margin"
+            android:layout_marginTop="@dimen/default_margin"
             android:layout_toEndOf="@id/dish_image"
             android:layout_toRightOf="@+id/dish_image"
             app:layout_constraintBottom_toBottomOf="parent"
