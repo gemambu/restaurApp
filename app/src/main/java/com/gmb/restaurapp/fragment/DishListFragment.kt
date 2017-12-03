@@ -25,8 +25,6 @@ class DishListFragment : Fragment() {
         val ARG_TABLE_NUMBER = "ARG_TABLE_POSITION"
 
         var listData: MutableList<Dish>? = null
-        var onDishClickListener: DishRecyclerViewAdapter.OnDishClickListener? = null
-
 
         lateinit var table: Table
 
@@ -43,6 +41,7 @@ class DishListFragment : Fragment() {
         }
     }
 
+    private var onDishClickListener: DishRecyclerViewAdapter.OnDishClickListener? = null
     private lateinit var dishList: RecyclerView
     private lateinit var root: View
 
