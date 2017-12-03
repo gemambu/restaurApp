@@ -22,10 +22,7 @@ class TableListFragment : Fragment() {
     private var onTableSelectedListener: OnTableSelectedListener? = null
 
     companion object {
-        fun newInstance(): TableListFragment {
-            val fragment = TableListFragment()
-            return fragment
-        }
+        fun newInstance() = TableListFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -46,10 +43,6 @@ class TableListFragment : Fragment() {
 
         return root
 
-    }
-
-    private fun addTable() {
-        Tables.addTable()
     }
 
     override fun onAttach(context: Context?) {

@@ -4,7 +4,7 @@ import java.io.Serializable
 
 
 class Table(val number: Int,
-            var dishes: MutableMap<Int, Dish>?) : Serializable {
+            private var dishes: MutableMap<Int, Dish>?) : Serializable {
 
     companion object {
         var index: Int = 0
@@ -15,7 +15,7 @@ class Table(val number: Int,
     }
 
     fun getValues() : MutableList<Dish> {
-        var listDishes = mutableListOf<Dish>()
+        val listDishes = mutableListOf<Dish>()
 
         if(dishes != null && !dishes!!.isEmpty()){
             listDishes.addAll(dishes!!.values)
@@ -44,7 +44,7 @@ class Table(val number: Int,
 
         var total = 0f
 
-        if (dishes != null && dishes!!.size > 0){
+        if (dishes != null && dishes!!.isNotEmpty()){
             dishes?.forEach { (_, value) ->
                 total += value.price }
         }

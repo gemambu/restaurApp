@@ -12,11 +12,7 @@
     <dimen name="width_photo_detail">150dp</dimen>
     <dimen name="height_photo_detail">150dp</dimen>
     <dimen name="zero_margin">0dp</dimen>
-    <dimen name="extra_margin">48dp</dimen>
     <dimen name="height_price_detail">35dp</dimen>
-    <dimen name="width_price_detail">150dp</dimen>
-    <dimen name="width_text_detail">315dp</dimen>
-    <dimen name="height_text_detail">110dp</dimen>
     <dimen name="max_height_allergen">35dp</dimen>
     <dimen name="allergen_text_size">30sp</dimen>
     <dimen name="margin_32dp">32dp</dimen>

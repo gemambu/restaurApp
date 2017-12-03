@@ -15,11 +15,10 @@
 
         <TextView
             android:id="@+id/dish"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/zero_margin"
+            android:layout_width="171dp"
+            android:layout_height="117dp"
             android:layout_alignParentTop="true"
             android:layout_marginStart="@dimen/margin_32dp"
-            android:layout_marginLeft="@dimen/margin_32dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Large"
             android:textSize="30sp"
             app:layout_constraintStart_toEndOf="@+id/dish_image"

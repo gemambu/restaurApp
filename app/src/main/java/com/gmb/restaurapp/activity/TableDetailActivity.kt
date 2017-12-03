@@ -2,7 +2,6 @@ package com.gmb.restaurapp.activity
 
 import android.app.AlertDialog
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
@@ -12,7 +11,7 @@ import android.view.View
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.activity.TableListActivity.Companion.EXTRA_TABLE_NUMBER
 import com.gmb.restaurapp.adapter.DishRecyclerViewAdapter
-import com.gmb.restaurapp.common.*
+import com.gmb.restaurapp.common.TABLE
 import com.gmb.restaurapp.fragment.DishListFragment
 import com.gmb.restaurapp.model.Dish
 import com.gmb.restaurapp.model.Table
@@ -73,7 +72,7 @@ class TableDetailActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishC
     }
 
 
-    fun showDishes() {
+    private fun showDishes() {
 
         val fragment = DishListFragment.newInstance(table.getValues(), tablePosition)
         fragmentManager

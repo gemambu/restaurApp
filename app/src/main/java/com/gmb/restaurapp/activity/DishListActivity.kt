@@ -50,7 +50,6 @@ class DishListActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishClic
         val listDishes = intent.getSerializableExtra(EXTRA_DISH_LIST) as? MutableList<Dish>
         tablePosition = intent.getIntExtra(EXTRA_POSITION, 0)
 
-        //if(fragmentManager.findFragmentById(R.id.dish_list_fragment) == null){
             async(UI) {
 
                 val fragment = DishListFragment.newInstance(listDishes, tablePosition)
@@ -60,8 +59,6 @@ class DishListActivity : AppCompatActivity(), DishRecyclerViewAdapter.OnDishClic
                         .commit()
             }
 
-
-        //}
 
         supportActionBar?.title = getString(R.string.table_menu_title, Tables[tablePosition].number)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)

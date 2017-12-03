@@ -6,12 +6,9 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-import android.util.TypedValue
-import android.view.View
 import android.widget.ViewSwitcher
 import com.gmb.restaurapp.R
 import com.gmb.restaurapp.common.VIEW_MAIN
-import com.gmb.restaurapp.fragment.DishListFragment
 import com.gmb.restaurapp.fragment.TableListFragment
 import com.gmb.restaurapp.model.Allergen
 import com.gmb.restaurapp.model.Dish
@@ -21,7 +18,6 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.async
 import org.jetbrains.anko.coroutines.experimental.bg
 import org.json.JSONObject
-import java.io.File
 import java.net.URL
 import java.util.*
 
@@ -141,7 +137,7 @@ class TableListActivity : AppCompatActivity(), TableListFragment.OnTableSelected
     }
 
     private fun convertJson(jsonString: String): List<Dish> {
-        val jsonRoot = JSONObject(jsonString.toString())
+        val jsonRoot = JSONObject(jsonString)
         val dishesList = jsonRoot.getJSONArray("dishes")
 
         val menuList = mutableListOf<Dish>()

@@ -1,14 +1,13 @@
 package com.gmb.restaurapp
 
 import com.gmb.restaurapp.model.Dish
-import com.gmb.restaurapp.model.Table
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
 class DishModelUnitTest {
 
-    lateinit var dish: Dish
+    private lateinit var dish: Dish
 
     @Before
     fun setup() {
@@ -42,7 +41,7 @@ class DishModelUnitTest {
 
     @Test
     fun copyDish_isCorrect() {
-        var dishCopy = dish.copy()
+        val dishCopy = dish.copy()
 
         Assert.assertEquals(dish.id, dishCopy.id)
         Assert.assertEquals(dish.allergens, dishCopy.allergens)
