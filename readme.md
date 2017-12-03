@@ -37,6 +37,17 @@ En varios puntos he hablado de una lista. No tiene por qué ser un ListView si n
 Piensa bien qué debe ser fragment, qué debe ser actividad y cómo comunicar unos con otros.
 No te compliques con los datos del servicio, es decir, no hace falta que crees una carta de 128 platos con imágenes Hi-res, lo importante es que vea que has aprendido los fundamentos de Android.
 
+## Información de la solución publicada
+
+- Se han utilizado Activities junto con Fragments, para que fuera cómoda y accesible la navegación entre pantallas.
+- Se ha utilizado RecyclerView para mostrar las Cards con la información resumida de cada plato.
+- Se reutiliza el Fragment que muestra el listado de platos (este se maneja desde el detalle de mesa como desde el menú)
+- Se han añadido funciones auxiliares al modelo de Table, para manejar de forma fácil los platos correspondientes a cada mesa.
+- Se han añadido funciones auxiliares al modelo de Dish, para manejar de forma fácil los cambios de cada plato.
+- El listado de mesas es un Singleton, de esta forma no es necesario actualizar ni enviar datos entre Acitivities cuando se actualiza la información.
+- Las imágenes de platos e iconos de alrgenos se manejan en una clase de Utilidad (este método podría ser ms dinámico, se anota como posible mejora)
+- Se han creado visualizaciones de layut especiales para una pantalla de densidad mínima de 400dp, y con orientación landscape.
+
 ## Información sobre el proyecto
 
 Versión de Android Studio utilizada:
@@ -68,9 +79,12 @@ En este mismo menú se añade la opción de borrar todos los platos. Esta acció
 
 ## Posibles mejoras
 
+- Mejorar la parte visual de los layout. Optimizar el uso del espacio en función del dispositivo.
 - Modificar el layout para mostrar en caso de tener una pantalla amplia el listado de mesas y detalle de mesa a la vez.
 - Establecer un menú de Settings para definir el número de mesas disponibles, así como un floating button en el listado de mesas para añadir una ms.
 - Establecer en el menú de Settings el idioma a mostrar. Ampliar el fichero de strings con las traducciones correspondientes.
+- Manejar dinámicamente la descarga de imágenes e iconos (en esta dase del proyecto están alojados localmente)
+- Almacenar los datos en el dispositivo, ahora mismo al cerrar la aplicación se pierden los datos gestionados.
 
 ## Demo
 
