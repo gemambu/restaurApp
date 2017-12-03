@@ -59,7 +59,7 @@ Emuladores utilizados:
 
 Si no hay conexión a internet, se puede utilizar un json incluido en la aplicación, con los mismos datos que el json alojado en el Mocky (http://www.mocky.io/v2/5a2062b2310000b739c0b28b)
 
-<div>Iconos diseñados por <a href="http://www.freepik.com" title="Freepik">Freepik</a> desde <a href="https://www.flaticon.es/" title="Flaticon">www.flaticon.com</a> con licencia <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+Iconos diseñados por [Freepik](http://www.freepik.com "Freepik") desde [www.flaticon.com](https://www.flaticon.es/ "Flaticon") con licencia [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/ "Creative Commons BY 3.0")
 
 Se añade en el detalle de plato (ya añadido a la mesa) la opción de menú de Borrar plato. Esta acción es inmediata, y no pide segunda confirmación.
 
@@ -71,3 +71,7 @@ En este mismo menú se añade la opción de borrar todos los platos. Esta acció
 - Modificar el layout para mostrar en caso de tener una pantalla amplia el listado de mesas y detalle de mesa a la vez.
 - Establecer un menú de Settings para definir el número de mesas disponibles, así como un floating button en el listado de mesas para añadir una ms.
 - Establecer en el menú de Settings el idioma a mostrar. Ampliar el fichero de strings con las traducciones correspondientes.
+
+## Demo
+
+![](https://media.giphy.com/media/3o6fJ5c04XuQEX2nBe/giphy.gif)
