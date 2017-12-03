@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Fragment
 import android.content.Context
 import android.os.Bundle
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -56,6 +57,7 @@ class DishDetailFragment : Fragment() {
             val imageView = root.findViewById<ImageView>(R.id.dish_detail_photo)
             val description = root.findViewById<TextView>(R.id.dish_description)
             variant = root.findViewById(R.id.dish_variant)
+            variant.inputType = InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS
             val price = root.findViewById<TextView>(R.id.dish_price)
 
             val allergens = mutableListOf<TextView>(
