@@ -68,13 +68,15 @@ Emuladores utilizados:
 
 ## Extras
 
+Se añade en el detalle de plato (ya añadido a la mesa) la opción de menú de Borrar plato. Esta acción es inmediata, y no pide segunda confirmación.
+
+En este mismo menú se añade la opción de borrar todos los platos. Esta acción es inmediata, y no pide segunda confirmación.
+
 Si no hay conexión a internet, se puede utilizar un json incluido en la aplicación, con los mismos datos que el json alojado en el Mocky (http://www.mocky.io/v2/5a2062b2310000b739c0b28b)
 
 Iconos diseñados por [Freepik](http://www.freepik.com "Freepik") desde [www.flaticon.com](https://www.flaticon.es/ "Flaticon") con licencia [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/ "Creative Commons BY 3.0")
 
-Se añade en el detalle de plato (ya añadido a la mesa) la opción de menú de Borrar plato. Esta acción es inmediata, y no pide segunda confirmación.
-
-En este mismo menú se añade la opción de borrar todos los platos. Esta acción es inmediata, y no pide segunda confirmación.
+Logo creado con [Logojoy](https://logojoy.com).
 
 
 ## Posibles mejoras
@@ -85,6 +87,8 @@ En este mismo menú se añade la opción de borrar todos los platos. Esta acció
 - Establecer en el menú de Settings el idioma a mostrar. Ampliar el fichero de strings con las traducciones correspondientes.
 - Manejar dinámicamente la descarga de imágenes e iconos (en esta dase del proyecto están alojados localmente)
 - Almacenar los datos en el dispositivo, ahora mismo al cerrar la aplicación se pierden los datos gestionados.
+- Crear iconos para la aplicación y gestionar las imágenes en función del dispositivo.
+- Cualquier idea o crítica constructiva es bienvenida :)
 
 ## Demo
 
