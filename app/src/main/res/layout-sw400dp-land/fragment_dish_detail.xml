@@ -17,7 +17,7 @@
         <ImageView
             android:id="@+id/dish_detail_photo"
             android:layout_width="@dimen/width_photo_content_dish"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin_24dp"
             android:layout_marginTop="@dimen/margin_24dp"
             android:contentDescription="@string/dish_photo"
@@ -31,7 +31,7 @@
             android:id="@+id/dish_allergens_information"
             layout="@layout/allergens_list"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="@dimen/zero_margin"
             android:layout_marginBottom="@dimen/default_margin"
             android:layout_marginEnd="@dimen/min_margin"
             android:layout_marginStart="@dimen/margin_24dp"
@@ -45,13 +45,11 @@
             android:id="@+id/dish_price"
             android:layout_width="@dimen/price_detail_tablet_width"
             android:layout_height="@dimen/price_detail_tablet_height"
-            android:layout_marginEnd="@dimen/min_margin"
-            android:layout_marginStart="@dimen/min_margin"
+            android:layout_marginStart="@dimen/margin_24dp"
             android:layout_marginTop="@dimen/margin_24dp"
             android:text="@string/dish_price"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/dish_detail_photo"
             app:layout_constraintTop_toBottomOf="@+id/dish_variant"
             tools:text="Precio: 12.50 €" />
@@ -60,7 +58,7 @@
         <TextView
             android:id="@+id/dish_description"
             android:layout_width="@dimen/zero_margin"
-            android:layout_height="wrap_content"
+            android:layout_height="77dp"
             android:layout_marginEnd="@dimen/margin_24dp"
             android:layout_marginStart="@dimen/margin_24dp"
             android:layout_marginTop="@dimen/margin_32dp"
@@ -75,7 +73,7 @@
         <EditText
             android:id="@+id/dish_variant"
             android:layout_width="@dimen/zero_margin"
-            android:layout_height="wrap_content"
+            android:layout_height="66dp"
             android:layout_marginEnd="@dimen/margin_24dp"
             android:layout_marginStart="@dimen/margin_24dp"
             android:layout_marginTop="@dimen/margin_24dp"
@@ -92,11 +90,10 @@
 
         <Button
             android:id="@+id/add_dish_btn"
-            android:layout_width="@dimen/zero_margin"
-            android:layout_height="wrap_content"
+            android:layout_width="227dp"
+            android:layout_height="75dp"
             android:layout_marginBottom="@dimen/default_margin"
             android:layout_marginStart="@dimen/margin_24dp"
-            android:layout_marginLeft="@dimen/margin_24dp"
             android:layout_marginTop="@dimen/default_margin"
             android:text="@string/add_dish_btn"
             android:textSize="@dimen/text_size_detail"
@@ -107,8 +104,8 @@
 
         <Button
             android:id="@+id/cancel_dish_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="193dp"
+            android:layout_height="67dp"
             android:layout_marginBottom="@dimen/default_margin"
             android:layout_marginEnd="@dimen/default_margin"
             android:layout_marginStart="@dimen/default_margin"
